@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AYUDA PERSONAL</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nomina.css') }}">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .container img {
+            margin: 10px;
+            max-width: 120%;
+            height: auto;
+        }
+        .experience {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .experience h1, .experience .experience-date {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .experience .form-group {
+            margin-bottom: 15px;
+        }
+        .experience .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .experience .form-group input, .experience .form-group select, .experience .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .experience .form-group textarea {
+            height: 100px;
+        }
+        .experience .btn-primary {
+            width: 100%;
+            padding: 10px;
+        }
+        .experience .experience-description {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
+        <div class="container">
+            <img src="/static/imagenes/logo2.png" alt="Logo" class="navbar-brand">
+            <a class="navbar-brand" href="/index">Regresar al inicio</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="experience experience_left">
+            <div class="experience-date">SOLICITAR AYUDA</div>
+            <div class="experience-position">¿Tienes inconvenientes? <br> Cuéntanos, lo resolveremos lo más pronto posible.</div><br>
+            <div class="experience-description">
+                <form action="{{ url_for('procesar_formulario3') }}" method="post">
+                    <div class="form-group">
+                        <label for="nombre_medico">Nombre del Médico:</label>
+                        <input type="text" class="form-control" id="nombre_medico" name="nombre_medico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_de_inconveniente">Tipo de Inconveniente:</label>
+                        <select class="form-control" id="tipo_de_inconveniente" name="tipo_de_inconveniente" required>
+                            <option value="0">Seleccione una opción</option>
+                            <option value="Problema con Navegador">Problema con Navegador</option>
+                            <option value="Problema con Ipsa">Problema con Ipsa</option>
+                            <option value="Problema con Pager">Problema con Pager</option>
+                            <option value="Problema con Internet">Problema con Internet</option>
+                            <option value="Problema con Microsip">Problema con Microsip</option>
+                            <option value="Problema con la diadema">Problema con la diadema</option>
+                            <option value="Problema con el mouse">Problema con el mouse</option>
+                            <option value="Problema con la pantalla">Problema con la pantalla</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero_de_cubiculo">Número de Cubículo:</label>
+                        <input type="text" class="form-control" id="numero_de_cubiculo" name="numero_de_cubiculo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones Adicionales:</label>
+                        <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+                <div class="experience-description"><br><hr>
+                    <a href="/soporte_medicos"><button class="btn btn-primary">Consultar estado de solicitud</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
+        <div class="container">
+            <a class="navbar-brand" href="/index">Regresar al inicio</a>
+        </div>
+    </nav>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

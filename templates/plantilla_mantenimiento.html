@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>soporte admin</title>
+    <style>
+        .navbar {
+            background-color: #28289D !important;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28289D;
+            color: #FFFFFF;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <img src="/static/imagenes/logo2.png" alt="">
+                <a href="/exportar_a_excel_mantenimientos" class="navbar-brand">Descargar</a>
+                <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+            </div>
+        </nav>
+    <main>
+        <h1>SOLICITUDES MANTENIMIENTO LOCATIVO</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>LIDER A CARGO</th>
+                <th>UBICACION</th>
+                <th>DETALLE DE SOLICITUD</th>
+                <th>PRIORIDAD</th>
+                <th>FECHA ENVIO</th>
+                <th>OBSERVACIONES</th>
+                <th>FECHA DE FINALIZACION</th>
+                <th>ESTADO SOLICITUD</th>
+                <th>ACTUALIZAR ESTADO</th>
+                
+            </tr>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro[0] }}</td>
+                <td>{{ registro[1] }}</td>
+                <td>{{ registro[2] }}</td>
+                <td>{{ registro[3] }}</td>
+                <td>{{ registro[4] }}</td>
+                <td>{{ registro[5] }}</td>
+                <td>{{ registro[6] }}</td>
+                <td>{{ registro[7] }}</td>
+                <td>{{ registro[8] }}</td>
+                <td>
+                    <form action="/updatemant" method="post">
+                        <input type="hidden" name="id" value="{{ registro[0] }}">
+                        <select name="estado">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en proceso">En Proceso</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                        <br>
+                        <br>
+                        <textarea type="text" name="observaciones" placeholder="Observaciones"></textarea>
+                        <br>
+                        <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Actualizar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="/exportar_a_excel_mantenimientos" class="navbar-brand">Descargar</a>
+            <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+        </div>
+    </nav>
+</body>
+</html>

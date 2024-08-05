@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos del Día</title>
+</head>
+<body>
+    <main>
+        <h1>Tabla de Novedades de Nómina</h1>
+        <table border="3">
+            <thead>
+                <tr>
+                    
+                    <th>Nombre</th>
+                    <th>Tipo de Novedad</th>
+                    <th>Lider a Cargo</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Días de Novedad</th>
+                    <th>Observaciones</th>
+                    <th>Fecha_envio</th>
+                    <!-- Agregar más encabezados según sea necesario -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for novedad in novedades %}
+                <tr>
+                    <td>{{ novedad[0] }}</td>
+                    <td>{{ novedad[1] }}</td>
+                    <td>{{ novedad[2] }}</td>
+                    <td>{{ novedad[3] }}</td>
+                    <td>{{ novedad[4] }}</td>
+                    <td>{{ novedad[5] }}</td>
+                    <td>{{ novedad[6] }}</td>
+                    <td>{{ novedad[8] }}</td>
+                    <!-- Agregar más columnas según sea necesario -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="experience-description"><br><hr>
+        <a href="/nomina"><button type="submit" color = "	
+            #4EDFB5">Regresar al inicio</button> </a>
+     </div>
+    </main>
+</body>
+</html>

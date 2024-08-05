@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Interno de Pacientes</title>
+    <link rel="stylesheet" href="css/registro.css">
+</head>
+<body class="registro">
+    <h1>Formulario de Registro</h1>
+        <form action="{{ url_for('procesar_formulario1') }}" method="post" >
+            <label for="tipo_de_documento">Tipo de Documento:</label><br>
+            <input type="text" id="tipo_de_documento" name="tipo_de_documento" ><br>
+            <label for="numero_de_documento">Número de Documento:</label><br>
+            <input type="text" id="numero_de_documento" name="numero_de_documento"><br>
+            <label for="fecha_de_atencion">Fecha de Atención:</label><br>
+            <input type="date" id="fecha_de_atencion" name="fecha_de_atencion" value="{{ session.fecha_de_atencion }}"><br>
+            <label for="medico_quien_atiende">Médico:</label><br>
+            <input type="text" id="medico_quien_atiende" name="medico_quien_atiende" value="{{ session.medico_quien_atiende }}"><br><hr>
+            <input type="submit" value="Enviar" color="#4EDFB5">
+        </form>
+    </form><br>
+    <!-- <div class="experience-description">
+        <a href="/show_data_of_the_day"><button type="submit"> Mostrar Datos del Día</button></a>
+    </div> -->
+</body>
+</html>

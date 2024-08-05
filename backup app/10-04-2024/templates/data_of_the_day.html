@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos del Día</title>
+</head>
+<body>
+    <h1>Datos de Pacientes registrados por los medicos </h1>
+    <table border="2">
+        <tr>
+            <th>Tipo de Documento</th>
+            <th>Número de Documento</th>
+            <th>Fecha de Atención</th>
+            <th>Médico</th>
+            <th>Fecha de Envío</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table><br><hr>
+    <div class="experience-description">
+        <a href="/nomina"> <button type="submit">Volver al inicio</button></a>
+    </div>
+</body>
+</html>

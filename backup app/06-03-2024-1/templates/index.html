@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HOLA DR APP</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/soporte.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/medicos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/novedades.css') }}">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+  <script defer src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+  <header class="topheader">
+    <nav class="topnav">
+      <a href="#" class="logo">
+        <img height="70" width="200" src="{{ url_for('static', filename='imagenes/hola doctor logo.jpg') }}" alt="hola doctor">
+        <div class="logotype">
+
+      </a>
+      <button class="open-menu" aria-label="Abrir menú">
+        <img src="{{ url_for('static', filename='imagenes/list-stars.svg') }}" alt="abrir menu">
+      </button>
+      <ul class="menu">
+        <button class="close-menu" aria-label="Cerrar menú">
+          <img src="{{ url_for('static', filename='imagenes/x-circle.svg') }}" alt="cerrar menú">
+        </button>
+        <li><a href="#inicio" class="">Inicio</a></li>
+        <li><a href="#medicos">Medicos</a></li>
+        <li><a href="#novedades">novedades</a></li>
+        <li><a href="#administrativos">Administrativos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- inicio seccion de inicio -->
+  <div class="horizontal-padding vertical-padding" >
+    <section class="inicio" id="inicio">
+      <div class="inicio-info">
+        <h1 class="inicio-titulo" >Bienvenid@s</h1>
+          <div class="inicio-img-seccion"></div>
+        <p class="inicio-detalle">
+          <img height="450" width="650"  src="/static/imagenes/cibernetico jpg_Mesa de trabajo 1.jpg" alt="">
+          <!-- Lugar dedicado a profesionales de la salud! En este espacio encontrarán recursos especializados, actualizaciones
+          médicas y herramientas para potenciar su práctica. Exploren nuestro contenido y descubran cómo podemos colaborar
+          juntos para alcanzar el bienestar de la comunidad. ¡Gracias por confiar en nosotros para su desarrollo
+          profesional! -->
+        </p>
+        <!-- <button class="inicio-btn">DESCARGAR</button> -->
+      </div>
+      <span class="inicio-img-seccion">
+        <img class="inicio-img" src="{{ url_for('static', filename='imagenes/medico.png') }}" alt="medico">
+        <div class="inicio-img-linea" ></div>
+      </span>
+    </section>
+  </div>
+                      <!-- inicia seccion de medicos -->
+  <section class="experiences" id="medicos">
+    <img  class="wave" src="{{ url_for('static', filename='imagenes/wave.svg') }}" alt="division">
+    <div class="experiences-body">
+      <h2 class="experiences-title">Medicos</h2>
+      <div class="experiences-grid">
+        <div class="empty"></div>
+        <div class="line"></div>
+        <div class="experience">
+          <div class="experience-date">Registro de pacientes</div>
+          <div class="experience-company"></div>
+          <div class="experience-position">lleva el control del registro de tus pacientes.</div>
+          <div class="experience-description"><br><hr>
+            <a href="/registro"><button type="submit" value="ADMINISTRADOR">Registro de pacientes</button> </a>
+         </div>
+        </div>
+        
+        <div class="experience experience_left">
+          <div class="experience-date">Solicitar soporte</div>
+          <div class="experience-position">¿tienes inconvenientes? <br> cuentanos lo resolveremos lo mas pronto posible.</div><br>
+          <div class="experience-description">
+            <form action="{{ url_for('procesar_formulario3') }}" method="post" >
+              <div class="form-group">
+                <label for="nombre_medico">Nombre del Médico:</label><br>
+                <input type="text" id="nombre_medico" name="nombre_medico" required><br>
+              </div>
+              <div class="form-group">   
+                  <label for="tipo_de_inconveniente"  > Tipo de Inconveniente:</label><br>
+                  <select type="tipo_de_inconveniente" name="tipo_de_inconveniente" id="tipo_de_inconveniente" required >
+                    <option value="0">Seleccione una opcion</option>
+                    <option value="Problema con Navegador">Problema con Navegador</option>
+                    <option value="Problema con Ipsa">Problema con Ipsa</option>
+                    <option value="Problema con Pager">Problema con Pager</option>
+                    <option value="Problema con Internet">Problema con Internet</option>
+                    <option value="Problema con Microsip">Problema con Microsip</option>
+                    <option value="Problema con la diadema">Problema con la diadema</option>
+                    <option value="Problema con el mouse">Problema con el mouse</option>
+                    <option value="Problema con la pantalla">Problema con la pantalla</option>
+                    <option value="otro">Otro</option>
+                  </select><br>
+              </div>
+              <div class="form-group">
+                <label for="numero_de_cubiculo">Número de Cubículo:</label><br>
+                <input type="text" id="numero_de_cubiculo" name="numero_de_cubiculo" required><br>
+              </div>
+              <div class="form-group">
+                <label for="observaciones">Observaciones Adicionales:</label><br>
+                <textarea id="observaciones" name="observaciones"></textarea><br>
+              </div>
+              <div class="experience-description"><br><hr>
+                <a><button type="submit" value="Enviar">Enviar</button> </a>
+             </div>
+            </form>
+            <div class="experience-description"><br><hr>
+              <a href="/estado_solicitud"><button type="submit">Consultar estado de solicitud</button> </a>
+           </div>
+          </div>    
+        </div>
+          <div class="line"></div>
+          <div class="empty"></div>
+          <div class="empty"></div>
+          <div class="line"></div>
+        <div class="experience">
+          <div class="experience-date">Registro entrega de equipos y puestos de trabajo</div>
+          <div class="experience-position">registra que activos tienes a tu cargo</div>
+          <div class="experience-description"><br><hr>
+             <a href="/form"><button type="submit" value="ADMINISTRADOR">Registrar</button> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img  class="wave wave_bottom" src="{{ url_for('static', filename='imagenes/wave.svg') }}" alt="division">
+  </section>
+
+              <!-- inicia seccion de registro de novedades -->
+
+              <div class="horizontal-padding vertical-padding" >
+                <section class="novedades" id="novedades">
+                    <h2 class="soporte-titulo" >registro de novedades</h2><br><br>
+                    <div class="login-container">
+                      <form action="{{ url_for('procesar_formulario4') }}" " method="post" enctype="multipart/form-data">
+                        <div class="form-container">
+                            <div class="form-row">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="tipo_novedad">Tipo de Novedad:</label>
+                                <select id="tipo_novedad" name="tipo_novedad">
+                                  <option value="0">Seleccione una opcion</option>
+                                  <option value="Incapacidad">Incapacidad</option>
+                                  <option value="licencia_remunerada">Licencia Remunerada</option>
+                                  <option value="licencia_no_remunerada">Licencia no Remunerada</option>
+                                  <option value="permiso_cumpleaños">Permiso Cumpleaños</option>
+                                  <option value="suspencion">suspencion</option>
+                                  <option value="dia_de_la_familia">dia de la familia</option>
+                                  <option value="licencia_por_luto">licencia por luto</option>
+                                  <option value="vacaciones">vacaciones</optProbion>
+                                  <option value="calamidad_domestica">Calamidad domestica</optProbion>
+                                  <option value="falta_sin_justificacion">Falta sin justificacion</optProbion>
+                                  <option value="permiso_votaciones">Permiso votacion</option>
+                                  <option value="otro">Otro</option>
+                             
+                            </select>
+                            
+                            </div>
+                            <div class="form-row">
+                                <label for="lider_a_cargo">Líder a Cargo:</label>
+                                <select id="lider_a_cargo" name="lider_a_cargo">
+                                  <option value="0">Seleccione una opcion</option>
+                                  <option value="MILENA_MARIA_ECHAVARRIA_HENAO">MILENA MARIA ECHAVARRIA HENAO</option>
+                                  <option value="VALERIA_RODRIGUEZ_AREIZA">VALERIA RODRIGUEZ AREIZA</option>
+                                  <option value="NATALIA_ANDREA_ZAPATA_TORO">NATALIA ANDREA ZAPATA TORO</option>
+                                  <option value="ALEX_DAVID_GIRALDO_BARRERA">ALEX DAVID GIRALDO BARRERA</option>
+                                </select>
+                            
+                            </div>
+                            <div class="form-row">
+                                <label for="fecha_inicio">Fecha de Inicio:</label>
+                                <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="fecha_fin">Fecha de Fin:</label>
+                                <input type="date" id="fecha_fin" name="fecha_fin" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="dias_novedad">Días de Novedad:</label>
+                                <input type="number" id="dias_novedad" name="dias_novedad" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="observaciones">Observaciones Adicionales:</label>
+                                <textarea id="observaciones" name="observaciones"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <label for="archivo_pdf">Archivo PDF:</label>
+                                <input type="file" id="archivo_pdf" name="archivo_pdf" accept="application/pdf" >
+                            </div>
+                            
+                              <div class="enviar_novedades"><br><hr>
+                              <a><button type="submit" value="registrar" onclick="return exito()">Registrar</button> </a>
+                            </div>
+                          </form>
+                        </div>
+
+                    </div>  
+                </section>
+              </div>
+
+                     <!-- inicia seccion administrativos -->
+  <div class="horizontal-padding vertical-padding" >
+      <section class="administrativos" id="administrativos" methods = 'post'>
+          <h2 class="soporte-titulo" >Administrativos</h2>
+          <div class="login-container">
+     <img src="/static/imagenes/PAGINA EN CONTRUCCION.jpg" alt=""> 
+      </section>
+
+  </div>
+  <script>
+    function exito(){
+     Swal.fire({
+        title: 'enviado',
+        text: 'Mensaje en registro exitoso',
+        icon: 'salir',
+        timer: 50000, // Tiempo en milisegundos
+        temporizadorProgressBar
+     });
+    }
+    
+    
+    </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+  
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTROL DE LINEAS</title>
+    <link rel="stylesheet" href="css/lineas.css">
+</head>
+<body>
+    <h1>Asignaciones </h1>
+    <a href="/operaciones"><button type="submit" color = "	
+        #4EDFB5">Regresar al inicio</button> </a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Linea</th>
+                <th>IMEI</th>
+                <th>NOMBRE MEDICO</th>
+                <th>CARGO</th>
+                <th>Cedula</th>
+                <th>Detalle Entrega</th>
+                <th>Fecha Entrega</th>
+                <th>Observacion</th>
+                <th>Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for asignacion in asignaciones %}
+            <tr  width="90%">
+                <form action="/update" method="post">
+                    <td  type="text">{{ asignacion[0] }}</td>
+                    <td><input type="text" name="linea" value="{{ asignacion[1] }}"></td>
+                    <td><input type="text" name="imei" value="{{ asignacion[2] }}"></td>
+                    <td><input type="text" name="nombre" id="nombre" value="{{ asignacion[3] }}"></td>
+                    <td><input type="text" name="cargo" id="cargo" value="{{ asignacion[4] }}"></td>
+                    <td><input type="text" name="cedula" id="cedula" value="{{ asignacion[5] }}"></td>
+                    <td><input type="text" name="detalle_entrega" value="{{ asignacion[6] }}"></td>
+                    <td><input type="date" name="fecha_entrega" value="{{ asignacion[7] }}"></td>
+                    <td><input type="text" name="observacion" value="{{ asignacion[8] }}"></td>
+                    <input type="hidden" name="id" value="{{ asignacion[0] }}">
+                    <td><input class="submit" type="submit" value="ACTUALIZAR {{ asignacion[0] }}"></td>
+                  
+                </form>
+                <script>
+                    function buscarNombreCargo() {
+                        var cedula = document.getElementById("cedula").value;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "/buscar_nombre_cargo?cedula=" + cedula, true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                document.getElementById("nombre").value = response.nombre;
+                                document.getElementById("cargo").value = response.cargo;
+                            }
+                        };
+                        xhr.send();
+                    }
+                </script>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        
+    </table><br><hr>
+    <a href="/operaciones"><button type="submit" color = "	
+        #4EDFB5">Regresar al inicio</button> </a>
+</body>
+</html>

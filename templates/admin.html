@@ -1,0 +1,640 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>holadr app</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .sidebar {
+      height: 100%;
+      width: 300px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #28289D;
+      padding-top: 20px;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar a {
+      padding: 5px 15px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+    }
+    .sidebar a:hover {
+      background-color: #4EDFB5;
+    }
+    .chart-container {
+            display: inline-block;
+            width: 43%; /
+            height: 43vh; 
+        }
+    .content {
+      margin-left: 350px;
+      padding: 20px;
+    }
+    .active-marker::be
+
+.activ
+
+.active-marker::before {
+  content: "•";
+  margin-right: 5px; 
+}
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <img src="/static/imagenes/logo2.png" alt=""><br>
+  <a class="dropdown-item" aria-current="page" href="/admin">Inicio</a>
+  <a class="dropdown-item" href="/plano">Mapa</a>
+  <div class="accordion" id="nominaAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#nominaCollapse" role="button" aria-expanded="false" aria-controls="nominaCollapse">Nomina</a>
+    <div id="nominaCollapse" class="collapse" data-parent="#nominaAccordion">
+      <a class="dropdown-item" href="/plantilla_incapacidades">Incapacidades</a>
+      <a class="dropdown-item" href="/plantilla_nomina">Otras novedades</a>
+      <a class="dropdown-item" href="/show_data_of_the_day">Registro medicos</a>
+      <a class="dropdown-item" href="/nomina">Agenda</a>
+    </div>
+  </div>
+
+  <div class="accordion" id="operacionesAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#operacionesCollapse" role="button" aria-expanded="false" aria-controls="operacionesCollapse">Operaciones</a>
+    <div id="operacionesCollapse" class="collapse" data-parent="#operacionesAccordion">
+      <a class="dropdown-item" href="/estado_solicitud">Soporte</a>
+      <a class="dropdown-item" href="/inventario">Inventario</a>
+      <a class="dropdown-item" href="/lineas">Lineas</a>
+      <a class="dropdown-item" href="/inventario_milenio">Inventario Outsourcing</a>
+      <a class="dropdown-item" href="/operaciones">Agenda</a>
+    </div>
+  </div>
+  <div class="accordion" id="talentoAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#talentoCollapse" role="button" aria-expanded="false" aria-controls="talentoCollapse">Talento humano</a>
+    <div id="talentoCollapse" class="collapse" data-parent="#talentoAccordion">
+      <a class="dropdown-item" href="/personal">Personal activo</a>
+      <a class="dropdown-item" href="/talento_humano">Agenda</a>
+      
+    </div>
+  </div> 
+  <div class="accordion" id="contabilidadAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#contabilidadCollapse" role="button" aria-expanded="false" aria-controls="contabilidadCollapse">Contabilidad</a>
+    <div id="contabilidadCollapse" class="collapse" data-parent="#contabilidadAccordion">
+      <a class="dropdown-item" href="/rips_comfama">Rips comfama</a>
+      <a class="dropdown-item" href="/rips_sura">Rips sura</a>
+      <a class="dropdown-item" href="/contabilidad">Agenda</a>
+      
+    </div>
+  </div>
+
+  <div class="accordion" id="calidadAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#calidadCollapse" role="button" aria-expanded="false" aria-controls="calidad">Calidad</a>
+    <div id="calidadCollapse" class="collapse" data-parent="#calidadAccordion">
+      <div class="accordion" id="mantenimientoAccordion">
+        <a class="dropdown-item" data-toggle="collapse" href="#mantenimientoCollapse" role="button" aria-expanded="false" aria-controls="mantenimiento">mantenimiento locativo</a>
+        <div id="mantenimientoCollapse" class="collapse" data-parent="#mantenimientoAccordion">
+          <a class="dropdown-item" href="#">Enviar solicitud</a>
+          <a class="dropdown-item" href="#">Estado de solicitudes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="accordion" id="crearActividadAccordion">
+   <a class="dropdown-item" data-toggle="collapse" href="#crearActividadCollapse" role="button" aria-expanded="false" aria-controls="crearActividadCollapse">Crear actividades</a>
+   <div id="crearActividadCollapse" class="collapse" data-parent="#crearActividadAccordion">
+     <a class="dropdown-item" href="/gestionar_actividades">Gestionar Actividades</a>
+    
+   </div>
+ </div>
+    <div class="accordion" id="registrarAccordion">
+      <a class="dropdown-item" data-toggle="collapse" href="#registrarCollapse" role="button" aria-expanded="false" aria-controls="registrarCollapse">Registrar novedades</a>
+      <div id="registrarCollapse" class="collapse" data-parent="#registrarAccordion">
+        <a class="dropdown-item" href="/registrar_incapacidad">Registrar Incapacidades</a>
+        <a class="dropdown-item" href="/registrar_novedad">Registrar Otras Novedades</a>
+      </div>
+    </div>
+  <div class="accordion" id="ripsAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#ripsCollapse" role="button" aria-expanded="false" aria-controls="ripsCollapse">Cargar rips</a>
+    <div id="ripsCollapse" class="collapse" data-parent="#ripsAccordion">
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#ripsComfamaModal">Rips comfama</a>
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#ripsSuraModal">Rips sura</a>
+    </div>
+  </div>
+
+  <a class="dropdown-item" aria-current="page" href="#">Documentacion</a>
+  <a class="dropdown-item" href="/logout">Salir</a>
+</div>
+
+<div class="content">
+      <h2>Bienvenid@ <a class="navbar-brand"><h2>{{ username }}</h2></a></h2>
+
+      <div class="chart-container">
+
+        <canvas id="grafico1" width="30" height="30"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="grafico2" width="30" height="30"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="grafico3" width="30" height="30"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="grafico4" width="30" height="30"></canvas>
+    </div>
+ 
+</div>
+
+
+<div class="modal fade" id="ripsComfamaModal" tabindex="-1" role="dialog" aria-labelledby="ripsComfamaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ripsComfamaModalLabel">Cargar Rips Comfama</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/subir_rips/comfama" enctype="multipart/form-data">
+          <input type="file" name="archivo">
+          <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="ripsSuraModal" tabindex="-1" role="dialog" aria-labelledby="ripsSuraModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ripsSuraModalLabel">Cargar Rips Sura</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/subir_rips/sura" enctype="multipart/form-data">
+          <input type="file" name="archivo">
+          <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+        var ctx1 = document.getElementById('grafico1').getContext('2d');
+        var data1 = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+            datasets: [{
+                label: 'Atenciones sura',
+                data: [12, 19, 3,15],
+                backgroundColor: '#007bff',
+                borderColor: '#ececec',
+                borderWidth: 2
+            }]
+        };
+        var opciones1 = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        var grafico1 = new Chart(ctx1, {
+            type: 'bar',
+            data: data1,
+            options: opciones1
+        });
+        var ctx2 = document.getElementById('grafico2').getContext('2d');
+        var data1 = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+            datasets: [{
+                label: 'Atenciones comfama',
+                data: [1200, 1900, 3000,9000],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2
+            }]
+        };
+        var opciones2 = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        var grafico2 = new Chart(ctx2, {
+            type: 'bar',
+            data: data1,
+            options: opciones2
+        });
+        var ctx3 = document.getElementById('grafico3').getContext('2d');
+        var data1 = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+            datasets: [{
+                label: 'Atenciones holadr',
+                data: [12, 19, 3,20],
+                backgroundColor: '#4edfb5',
+                borderColor: '#28289d',
+                borderWidth: 2
+            }]
+        };
+        var opciones3 = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        var grafico3 = new Chart(ctx3, {
+            type: 'bar',
+            data: data1,
+            options: opciones3
+        });
+        var ctx4 = document.getElementById('grafico4').getContext('2d');
+        var data1 = {
+            labels: ['Enero', 'Febrero', 'Marzo','abril'],
+            datasets: [{
+                label: 'atenciones totales',
+                data: [12, 19, 3,5],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+        var opciones4 = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        var grafico4 = new Chart(ctx4, {
+            type: 'bar',
+            data: data1,
+            options: opciones4
+        });
+
+        
+
+        
+    </script>
+  <script>
+    $(document).ready(function(){
+      
+      $('.dropdown-item').click(function(){
+        $('.dropdown-item').removeClass('active-marker');
+        $(this).addClass('active-marker');
+      });
+    });
+  </script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>holadr app</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .sidebar {
+      height: 100%;
+      width: 300px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #28289D;
+      padding-top: 20px;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar a {
+      padding: 5px 15px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+    }
+    .sidebar a:hover {
+      background-color: #4EDFB5;
+    }
+    .chart-container {
+      display: inline-block;
+      width: 43%; 
+      height: 43vh; 
+    }
+    .content {
+      margin-left: 350px;
+      padding: 20px;
+    }
+    .active-marker::before {
+      content: "•";
+      margin-right: 5px; 
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <img src="/static/imagenes/logo2.png" alt=""><br>
+  <a class="dropdown-item" aria-current="page" href="/admin">Inicio</a>
+  <a class="dropdown-item" href="/plano">Mapa</a>
+  <div class="accordion" id="nominaAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#nominaCollapse" role="button" aria-expanded="false" aria-controls="nominaCollapse">Nomina</a>
+    <div id="nominaCollapse" class="collapse" data-parent="#nominaAccordion">
+      <a class="dropdown-item" href="/plantilla_incapacidades">Incapacidades</a>
+      <a class="dropdown-item" href="/plantilla_nomina">Otras novedades</a>
+      <a class="dropdown-item" href="/show_data_of_the_day">Registro medicos</a>
+      <a class="dropdown-item" href="/nomina">Agenda</a>
+    </div>
+  </div>
+
+  <div class="accordion" id="operacionesAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#operacionesCollapse" role="button" aria-expanded="false" aria-controls="operacionesCollapse">Operaciones</a>
+    <div id="operacionesCollapse" class="collapse" data-parent="#operacionesAccordion">
+      <a class="dropdown-item" href="/estado_solicitud">Soporte</a>
+      <a class="dropdown-item" href="/inventario">Inventario</a>
+      <a class="dropdown-item" href="/lineas">Lineas</a>
+      <a class="dropdown-item" href="/inventario_milenio">Inventario Outsourcing</a>
+      <a class="dropdown-item" href="/plantilla_mantenimiento">Mantenimiento locativo</a>
+      <a class="dropdown-item" href="/operaciones">Agenda</a>
+    </div>
+  </div>
+  <div class="accordion" id="talentoAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#talentoCollapse" role="button" aria-expanded="false" aria-controls="talentoCollapse">Talento humano</a>
+    <div id="talentoCollapse" class="collapse" data-parent="#talentoAccordion">
+      <a class="dropdown-item" href="/personal">Personal activo</a>
+      <a class="dropdown-item" href="/talento_humano">Agenda</a>
+    </div>
+  </div> 
+  <div class="accordion" id="contabilidadAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#contabilidadCollapse" role="button" aria-expanded="false" aria-controls="contabilidadCollapse">Contabilidad</a>
+    <div id="contabilidadCollapse" class="collapse" data-parent="#contabilidadAccordion">
+      <a class="dropdown-item" href="/rips_comfama">Rips comfama</a>
+      <a class="dropdown-item" href="/rips_sura">Rips sura</a>
+      <a class="dropdown-item" href="/contabilidad">Agenda</a>
+    </div>
+  </div>
+
+  <div class="accordion" id="calidadAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#calidadCollapse" role="button" aria-expanded="false" aria-controls="calidad">Calidad</a>
+    <div id="calidadCollapse" class="collapse" data-parent="#calidadAccordion">
+      <div class="accordion" id="mantenimientoAccordion">
+        <a class="dropdown-item" data-toggle="collapse" href="#mantenimientoCollapse" role="button" aria-expanded="false" aria-controls="mantenimiento">Mantenimiento locativo</a>
+        <div id="mantenimientoCollapse" class="collapse" data-parent="#mantenimientoAccordion">
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#mantenimientoModal">Solicitar mantenimiento</a>
+          <a class="dropdown-item" href="/plantilla_mantenimiento">Historial mantenimiento</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion" id="crearActividadAccordion">
+   <a class="dropdown-item" data-toggle="collapse" href="#crearActividadCollapse" role="button" aria-expanded="false" aria-controls="crearActividadCollapse">Crear actividades</a>
+   <div id="crearActividadCollapse" class="collapse" data-parent="#crearActividadAccordion">
+     <a class="dropdown-item" href="/gestionar_actividades">Gestionar Actividades</a>
+   </div>
+ </div>
+  
+ <div class="accordion" id="registrarAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#registrarCollapse" role="button" aria-expanded="false" aria-controls="registrarCollapse">Registrar novedades</a>
+    <div id="registrarCollapse" class="collapse" data-parent="#registrarAccordion">
+      <a class="dropdown-item" href="/registrar_incapacidad">Registrar Incapacidades</a>
+      <a class="dropdown-item" href="/registrar_novedad">Registrar Otras Novedades</a>
+    </div>
+  </div>
+  
+  <div class="accordion" id="ripsAccordion">
+    <a class="dropdown-item" data-toggle="collapse" href="#ripsCollapse" role="button" aria-expanded="false" aria-controls="ripsCollapse">Cargar rips</a>
+    <div id="ripsCollapse" class="collapse" data-parent="#ripsAccordion">
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#ripsComfamaModal">Rips comfama</a>
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#ripsSuraModal">Rips sura</a>
+    </div>
+  </div>
+
+  <a class="dropdown-item" aria-current="page" href="#">Documentacion</a>
+  <a class="dropdown-item" href="/logout">Salir</a>
+</div>
+
+<div class="content">
+  <h2>Bienvenid@ <a class="navbar-brand"><h2>{{ username }}</h2></a></h2>
+
+  <div class="chart-container">
+    <canvas id="grafico1" width="30" height="30"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="grafico2" width="30" height="30"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="grafico3" width="30" height="30"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="grafico4" width="30" height="30"></canvas>
+  </div>
+</div>
+                                <!-- modal mantenimiento locativo -->
+<div class="modal fade" id="mantenimientoModal" tabindex="-1" role="dialog" aria-labelledby="mantenimientoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mantenimientoModalLabel">Solicitud de mantenimiento locativo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/mantenimiento_locativo" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="lider_a_cargo">lider a cargo:</label>
+            <input type="text" class="form-control" id="lider_a_cargo" name="lider_a_cargo" value="">
+          </div>
+          <div class="form-group">
+            <label for="ubicacion">Ubicacion de solicitud:</label>
+            <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="">
+          </div>
+          <div class="form-group">
+            <label for="detalle_solicitud">Detalle de la solicitud:</label>
+            <textarea type="text" class="form-control" id="detalle_solicitud" name="detalle_solicitud" ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="prioridad">Prioridad</label>
+            <select type="text" class="form-control" id="prioridad" name="prioridad" value="">
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+
+
+          <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                                                            <!-- modal comfama -->
+<div class="modal fade" id="ripsComfamaModal" tabindex="-1" role="dialog" aria-labelledby="ripsComfamaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ripsComfamaModalLabel">Cargar Rips Comfama</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/subir_rips/comfama" enctype="multipart/form-data">
+          <input type="file" name="archivo">
+          <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                                                             <!-- modal sura -->
+<div class="modal fade" id="ripsSuraModal" tabindex="-1" role="dialog" aria-labelledby="ripsSuraModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ripsSuraModalLabel">Cargar Rips Sura</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/subir_rips/sura" enctype="multipart/form-data">
+          <input type="file" name="archivo">
+          <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.dropdown-item').click(function(){
+      $('.dropdown-item').removeClass('active-marker');
+      $(this).addClass('active-marker');
+    });
+  });
+</script>
+
+<script>
+  var ctx1 = document.getElementById('grafico1').getContext('2d');
+  var data1 = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+    datasets: [{
+      label: 'Atenciones sura',
+      data: [12, 19, 3,15],
+      backgroundColor: '#007bff',
+      borderColor: '#ececec',
+      borderWidth: 2
+    }]
+  };
+  var opciones1 = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+  var grafico1 = new Chart(ctx1, {
+    type: 'bar',
+    data: data1,
+    options: opciones1
+  });
+  var ctx2 = document.getElementById('grafico2').getContext('2d');
+  var data1 = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+    datasets: [{
+      label: 'Atenciones comfama',
+      data: [1200, 1900, 3000,9000],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 2
+    }]
+  };
+  var opciones2 = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+  var grafico2 = new Chart(ctx2, {
+    type: 'bar',
+    data: data1,
+    options: opciones2
+  });
+  var ctx3 = document.getElementById('grafico3').getContext('2d');
+  var data1 = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'abril'],
+    datasets: [{
+      label: 'Atenciones holadr',
+      data: [12, 19, 3,20],
+      backgroundColor: '#4edfb5',
+      borderColor: '#28289d',
+      borderWidth: 2
+    }]
+  };
+  var opciones3 = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+  var grafico3 = new Chart(ctx3, {
+    type: 'bar',
+    data: data1,
+    options: opciones3
+  });
+  var ctx4 = document.getElementById('grafico4').getContext('2d');
+  var data1 = {
+    labels: ['Enero', 'Febrero', 'Marzo','abril'],
+    datasets: [{
+      label: 'atenciones totales',
+      data: [12, 19, 3,5],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+    }]
+  };
+  var opciones4 = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+  var grafico4 = new Chart(ctx4, {
+    type: 'bar',
+    data: data1,
+    options: opciones4
+  });
+</script>
+</body>
+</html>

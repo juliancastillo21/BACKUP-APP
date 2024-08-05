@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HOLA DR APP</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/soporte.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/medicos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/novedades.css') }}">
+  <link rel="stylesheet" href="/static/css/imagen_alerta">
+  <script defer src="js/app.js"></script>
+</head>
+
+<style>
+/* Estilos de navegación y diseño */
+.fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+   
+        
+
+       
+
+      
+        
+
+
+        @media (min-width: 992px) {
+            #layoutSidenav #layoutSidenav_nav {
+                transform: translateX(0);
+            }
+
+            #layoutSidenav #layoutSidenav_content {
+                margin-left: 0;
+                transition: margin 0.15s ease-in-out;
+            }
+
+            .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+                transform: translateX(-225px);
+            }
+
+            .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
+                margin-left: -225px;
+            }
+
+            .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+                display: none;
+            }
+        }
+
+        .sb-nav-fixed .sb-topnav {
+            z-index: 1039;
+        }
+
+        .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+            width: 225px;
+           
+        }
+
+        .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+            padding-top: 36px;
+        }
+
+        
+
+        .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+            padding-left: 230px;
+            top: 56px;
+        }
+
+        .nav .nav-link .sb-nav-link-icon,
+        .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+            margin-right: 1.5rem;
+        }
+
+        
+        
+
+        
+
+       
+
+        .sb-sidenav .sb-sidenav-menu .nav {
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+
+        
+
+        .sb-sidenav .sb-sidenav-menu .nav .nav-link {
+            display: flex;
+            align-items: center;
+            padding-top: 1.55rem;
+            padding-bottom: 0.85rem;
+            position: relative;
+        }
+
+        .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
+            font-size: 1.00rem;
+        }
+
+        
+
+
+
+      
+
+        .sb-sidenav-dark {
+            background-color: #28289d;
+            color: rgb(121, 121, 121);
+        }
+
+       
+
+        .sb-sidenav-dark .sb-sidenav-menu .nav-link {
+            color: rgb(255, 255, 255);
+        }
+
+        .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+            color: rgb(255, 255, 255);
+        }
+
+       
+        .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+            color: #4edfe4;
+        }
+
+     
+
+</style>
+
+<body class="sb-nav-fixed">
+    <!-- Navbar superior -->
+    <nav class="sb-topnav navbar navbar-expand ">
+        
+        <!-- Sidebar Toggle -->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+    <!-- Layout -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <!-- Menú de navegación -->
+                        <!-- Logo -->
+                        <a class="navbar-brand ps-3" href="#">
+                            <img height="60" width="225" src="{{ url_for('static', filename='imagenes/hola doctor logo.jpg') }}" alt="hola doctor">
+                        </a>
+                        <a class="nav-link" href="/Ayuda">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
+                            ¿Necesitas ayuda?
+                        </a>
+                        <a class="nav-link" href="/registro">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
+                            Registrar pacientes
+                        </a>
+                        <a class="nav-link" href="/form">
+                            <div class="sb-nav-link-icon"><i class="fas fa-laptop-medical"></i></div>
+                            Entrega de equipos
+                        </a>
+                        <a class="nav-link" href="/Calculadora">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
+                            Calculadora IMC
+                        </a>
+                        <a class="nav-link" href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u">
+                            <div class="sb-nav-link-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            Condiciones Inseguras
+                        </a>
+                        <a class="nav-link" href="/manualmedicos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                            Manual
+                        </a>
+                        <a class="nav-link" href="/reglamento">
+                            <div class="sb-nav-link-icon"><i class="fas fa-gavel"></i></div>
+                            Reglamento Interno de Trabajo
+                        </a>
+                        <a class="nav-link" href="/logout">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Salir
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <!-- Inicio sección de inicio-->
+                <div class="horizontal-padding vertical-padding">
+                    <section class="inicio" id="inicio">
+                        <div class="inicio-info">
+                            <h1 class="inicio-titulo">Bienvenid@s</h1>
+                            <div class="inicio-img-seccion"></div>
+                            <p class="inicio-detalle">
+                                Lugar dedicado a profesionales de la salud! En este espacio encontrarán recursos especializados, actualizaciones
+                                médicas y herramientas para potenciar su práctica. Exploren nuestro contenido y descubran cómo podemos colaborar
+                                juntos para alcanzar el bienestar de la comunidad. ¡Gracias por confiar en nosotros para su desarrollo
+                                profesional!
+                            </p>
+                        </div>
+                        <span class="inicio-img-seccion">
+                            <img class="inicio-img" src="{{ url_for('static', filename='imagenes/medico.png') }}" alt="medico">
+                            <div class="inicio-img-linea"></div>
+                        </span>
+                    </section>
+                </div> 
+
+                <!-- Sección de médicos 
+                <section class="experiences" id="medicos">
+                    <div class="experiences-body">
+                        <h2 class="experiences-title">Médicos</h2>
+                        <div class="experiences-grid">
+                            <div class="empty"></div>
+                            <div class="line"></div>
+                            <div class="experience">
+                                <div class="experience-date">Registro de pacientes</div>
+                                <div class="experience-company"></div>
+                                <div class="experience-position">Lleva el control del registro de tus pacientes.</div>
+                                <div class="experience-description"><br><hr>
+                                    <a href="/registro"><button type="button" class="btn btn-primary btn-lg">Registro de pacientes</button></a>
+                                </div>
+                            </div>-->
+                            <!-- solicitar soporte
+                            <div class="experience experience_left">
+                                <div class="experience-date">Solicitar AYUDA</div>
+                                <div class="experience-position">¿Tienes inconvenientes? <br> Cuéntanos, lo resolveremos lo más pronto posible.</div><br>
+                                <div class="experience-description">
+                                    <form action="{{ url_for('procesar_formulario3') }}" method="post">
+                                        <div class="form-group">
+                                            <label for="nombre_medico">Nombre del Médico:</label><br>
+                                            <input type="text" id="nombre_medico" name="nombre_medico" required><br>
+                                        </div>
+                                        <div class="form-group">   
+                                            <label for="tipo_de_inconveniente">Tipo de Inconveniente:</label><br>
+                                            <select type="tipo_de_inconveniente" name="tipo_de_inconveniente" id="tipo_de_inconveniente" required>
+                                                <option value="0">Seleccione una opción</option>
+                                                <option value="Problema con Navegador">Problema con Navegador</option>
+                                                <option value="Problema con Ipsa">Problema con Ipsa</option>
+                                                <option value="Problema con Pager">Problema con Pager</option>
+                                                <option value="Problema con Internet">Problema con Internet</option>
+                                                <option value="Problema con Microsip">Problema con Microsip</option>
+                                                <option value="Problema con la diadema">Problema con la diadema</option>
+                                                <option value="Problema con el mouse">Problema con el mouse</option>
+                                                <option value="Problema con la pantalla">Problema con la pantalla</option>
+                                                <option value="otro">Otro</option>
+                                            </select><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numero_de_cubiculo">Número de Cubículo:</label><br>
+                                            <input type="text" id="numero_de_cubiculo" name="numero_de_cubiculo" required><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones">Observaciones Adicionales:</label><br>
+                                            <textarea id="observaciones" name="observaciones"></textarea><br>
+                                        </div>
+                                        <div class="experience-description"><br><hr>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                        </div>
+                                    </form>
+                                    <div class="experience-description"><br><hr>
+                                        <a href="/soporte_medicos"><button type="submit" class="btn btn-primary">Consultar estado de solicitud</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                            <div class="line"></div>
+                            <div class="experience">
+                                <div class="experience-date">Registro entrega de equipos y puestos de trabajo</div>
+                                <div class="experience-position">Registra qué activos tienes a tu cargo.</div>
+                                <div class="experience-description"><br><hr>
+                                    <a href="/form"><button type="submit" class="btn btn-primary">Registrar</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>-->
+
+                <!-- Sección de calculadora IMC
+                <section class="inicio" id="calculadora">
+                    <div class="inicio-info">
+                        <div class="calculadora">
+                            <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
+                            <label for="peso">Peso (kg):</label>
+                            <input type="number" id="peso" placeholder="Ingrese su peso">
+                            <label for="altura">Altura (m):</label>
+                            <input type="number" id="altura" placeholder="Ingrese su altura">
+                            <button onclick="calcularIMC()">Calcular IMC</button>
+                            <p id="resultado"></p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+            // Toggle the side navigation
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+                });
+            }
+        });
+
+        function calcularIMC() {
+            const peso = document.getElementById('peso').value;
+            const altura = document.getElementById('altura').value;
+
+            if (peso && altura) {
+                const imc = peso / (altura * altura);
+                let estado = '';
+
+                if (imc < 18.5) {
+                    estado = 'Bajo peso';
+                } else if (imc >= 18.6 && imc < 24.9) {
+                    estado = 'SALUDABLE';
+                } else if (imc >= 25 && imc < 29.9) {
+                    estado = 'CON SOBREPESO';
+                } else if (imc >= 30 && imc < 39.9) {
+                    estado = 'CON OBESIDAD';
+                } else {
+                    estado = 'OBESIDAD EXTREMA DE ALTO RIESGO';
+                }
+
+                // Mostrar el resultado en un modal
+                const modal = Swal.fire({
+                    title: 'Índice de Masa Corporal (IMC)',
+                    html: `Su IMC es: <strong>${imc.toFixed(2)}</strong><br>Estado: <strong>${estado}</strong>`,
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                });
+
+                // Limpiar los campos al cerrar el modal
+                modal.then((result) => {
+                    document.getElementById('peso').value = '';
+                    document.getElementById('altura').value = '';
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, ingrese su peso y altura.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
