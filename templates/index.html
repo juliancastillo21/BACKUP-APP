@@ -22,7 +22,6 @@
 </head>
 
 <style>
-    
     /* Estilos generales */
     body {
         font-family: 'Arial', sans-serif;
@@ -81,7 +80,7 @@
 
     /* Estilos para el menú lateral */
     .sb-sidenav {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background: #28289D;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -96,10 +95,16 @@
     }
 
 
-    .navbar-brand img {
-        max-width: 100%;
+    .navbar-brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 15px;
         margin-bottom: 20px;
+    }
+
+    .navbar-brand img {
+        max-width: 100%;
         height: auto;
     }
 
@@ -143,58 +148,59 @@
 
     /* Estilos de la sección de inicio */
     .inicio-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    margin-top: 0.5rem;
-}
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        margin-top: 0.5rem;
+    }
 
-.inicio-info {
-    flex: 0 0 60%;
-    padding-right: 1rem;
-}
+    .inicio-info {
+        flex: 0 0 60%;
+        padding-right: 1rem;
+    }
 
-.inicio-titulo {
-    font-size: 1.5rem;
-    color: #1e1e8a;
-    margin-bottom: 0.5rem;
-}
+    .inicio-titulo {
+        font-size: 1.5rem;
+        color: #1e1e8a;
+        margin-bottom: 0.5rem;
+    }
 
-.inicio-detalle {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #333;
-    margin-bottom: 1rem;
-}
+    .inicio-detalle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #333;
+        margin-bottom: 1rem;
+    }
 
     .inicio-btn {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    background-color: #1e1e8a;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    transition: background-color 0.3s ease;
-}
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        background-color: #1e1e8a;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        transition: background-color 0.3s ease;
+    }
 
-.inicio-btn:hover {
-    background-color: #4edfe4;
-}
+    .inicio-btn:hover {
+        background-color: #4edfe4;
+    }
 
-.inicio-img-seccion {
-    flex: 0 0 35%;
-}
+    .inicio-img-seccion {
+        flex: 0 0 35%;
+    }
 
-.inicio-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-}
+    .inicio-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
     /* Estilos responsivos */
     @media (max-width: 768px) {
         .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
@@ -227,18 +233,19 @@
         }
 
         .inicio-container {
-        flex-direction: column;
-        padding: 1rem;
-    }
+            flex-direction: column;
+            padding: 1rem;
+        }
 
-    .inicio-info, .inicio-img-seccion {
-        flex: 0 0 100%;
-        padding: 0;
-    }
+        .inicio-info,
+        .inicio-img-seccion {
+            flex: 0 0 100%;
+            padding: 0;
+        }
 
-    .inicio-img-seccion {
-        margin-top: 1rem;
-    }
+        .inicio-img-seccion {
+            margin-top: 1rem;
+        }
     }
 </style>
 
@@ -252,7 +259,9 @@
                         <!-- Menú de navegación -->
                         <!-- Logo -->
 
-                        <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor">
+                        <div class="navbar-brand">
+                            <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor">
+                        </div>
 
                         <a class="nav-link" href="/Ayuda">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
@@ -302,11 +311,12 @@
                             potenciar su práctica. Exploren nuestro contenido y descubran cómo podemos colaborar juntos
                             para
                             alcanzar el bienestar de la comunidad. ¡Gracias por confiar en nosotros para su desarrollo
-                            profesional!                        </p>
+                            profesional! </p>
                         <a href="#" class="inicio-btn">Explorar recursos</a>
                     </div>
                     <div class="inicio-img-seccion">
-                        <img class="inicio-img" src="{{ url_for('static', filename='imagenes/medico.png') }}" alt="Profesional médico">
+                        <img class="inicio-img" src="{{ url_for('static', filename='imagenes/medico.png') }}"
+                            alt="Profesional médico">
                     </div>
                 </div>
             </main>
