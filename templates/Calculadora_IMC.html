@@ -1,56 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Reglamento Interno</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nomina.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nomina.css') }}" />
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        .container {
+        .navbar {
+            background-color: #28289D;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .navbar-brand-img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+
+            .navbar-brand-img {
+                max-height: 30px;
+            }
+        }
+
+        /* Estilos para el contenedor principal */
+        .inicio {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+
+        .inicio-info {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
-        .container img {
-            margin: 10px;
-            max-width: 120%;
-            height: auto;
-        }
+
+        /* Estilos para la calculadora */
         .calculadora {
-            background-color: #f8f9fa;
-            padding: 20px;
+            background-color: #fff;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 20px;
         }
+
         .calculadora h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #28289d;
+            font-weight: 600;
         }
+
         .calculadora label {
-            margin-top: 10px;
+            font-weight: 500;
         }
+
+        .calculadora input {
+            border-color: #28289d;
+        }
+
         .calculadora button {
+            background-color: #28289d;
+            border-color: #28289d;
+        }
+
+        .calculadora button:hover {
+            background-color: #1a1a6d;
+            border-color: #1a1a6d;
+        }
+
+        /* Estilos para el resultado */
+        #resultado {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
             margin-top: 20px;
-            width: 100%;
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
+    <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
-            <img src="/static/imagenes/logo2.png" alt="Logo" class="navbar-brand">
-            <a class="navbar-brand" href="/index">Regresar al inicio</a>
+            <img src="/static/imagenes/logo2.png" alt="Logo" class="navbar-brand-img" style="max-height: 40px" />
+            <a class="navbar-brand" href="/index"> Regresar al inicio </a>
         </div>
     </nav>
 
@@ -60,68 +114,71 @@
                 <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
                 <div class="mb-3">
                     <label for="peso" class="form-label">Peso (kg):</label>
-                    <input type="number" class="form-control" id="peso" placeholder="Ingrese su peso">
+                    <input type="number" class="form-control" id="peso" placeholder="Ingrese su peso" />
                 </div>
                 <div class="mb-3">
                     <label for="altura" class="form-label">Altura (m):</label>
-                    <input type="number" class="form-control" id="altura" placeholder="Ingrese su altura">
+                    <input type="number" class="form-control" id="altura" placeholder="Ingrese su altura" />
                 </div>
-                <button class="btn btn-primary" onclick="calcularIMC()">Calcular IMC</button>
+                <button class="btn btn-primary" onclick="calcularIMC()">
+                    Calcular IMC
+                </button>
                 <p id="resultado" class="mt-3"></p>
             </div>
         </div>
     </section>
 
-    <!--<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
-        <div class="container">
-            <a class="navbar-brand" href="/index">Regresar al inicio</a>
-        </div>
-    </nav>-->
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
 
     <script>
         function calcularIMC() {
-            const peso = document.getElementById('peso').value;
-            const altura = document.getElementById('altura').value;
+            const peso = document.getElementById("peso").value;
+            const altura = document.getElementById("altura").value;
 
             if (peso && altura) {
                 const imc = peso / (altura * altura);
-                let estado = '';
+                let estado = "";
 
                 if (imc < 18.5) {
-                    estado = 'Bajo peso';
+                    estado = "Bajo peso";
                 } else if (imc >= 18.6 && imc < 24.9) {
-                    estado = 'SALUDABLE';
+                    estado = "SALUDABLE";
                 } else if (imc >= 25 && imc < 29.9) {
-                    estado = 'CON SOBREPESO';
+                    estado = "CON SOBREPESO";
                 } else if (imc >= 30 && imc < 39.9) {
-                    estado = 'CON OBESIDAD';
+                    estado = "CON OBESIDAD";
                 } else {
-                    estado = 'OBESIDAD EXTREMA DE ALTO RIESGO';
+                    estado = "OBESIDAD EXTREMA DE ALTO RIESGO";
                 }
 
                 // Mostrar el resultado en un modal
                 Swal.fire({
-                    title: 'Índice de Masa Corporal (IMC)',
-                    html: `Su IMC es: <strong>${imc.toFixed(2)}</strong><br>Estado: <strong>${estado}</strong>`,
-                    icon: 'info',
-                    confirmButtonText: 'Aceptar'
+                    title: "Índice de Masa Corporal (IMC)",
+                    html: `Su IMC es: <strong>${imc.toFixed(
+                        2
+                    )}</strong><br>Estado: <strong>${estado}</strong>`,
+                    icon: "info",
+                    confirmButtonText: "Aceptar",
                 }).then(() => {
                     // Limpiar los campos al cerrar el modal
-                    document.getElementById('peso').value = '';
-                    document.getElementById('altura').value = '';
+                    document.getElementById("peso").value = "";
+                    document.getElementById("altura").value = "";
                 });
             } else {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Por favor, ingrese su peso y altura.',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
+                    title: "Error",
+                    text: "Por favor, ingrese su peso y altura.",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
                 });
             }
         }
     </script>
 </body>
+
 </html>
