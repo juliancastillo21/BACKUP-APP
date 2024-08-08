@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
             --card-color: #ffffff;
             --text-color: #333333;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
@@ -22,7 +23,7 @@
             margin: 0;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -31,35 +32,35 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 30px;
         }
-        
+
         h1 {
             color: var(--primary-color);
             text-align: center;
             margin-bottom: 30px;
         }
-        
+
         .form-section {
             background-color: #f7f9fa;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
         }
-        
+
         .form-section h2 {
             color: var(--secondary-color);
             margin-top: 0;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
         }
-        
+
         input[type="text"],
         input[type="tel"],
         select,
@@ -70,22 +71,22 @@
             border-radius: 4px;
             font-size: 16px;
         }
-        
+
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
         }
-        
+
         .checkbox-item {
             display: flex;
             align-items: center;
         }
-        
+
         .checkbox-item input[type="checkbox"] {
             margin-right: 10px;
         }
-        
+
         button {
             background-color: var(--primary-color);
             color: white;
@@ -97,11 +98,25 @@
             width: 100%;
             transition: background-color 0.3s ease;
         }
-        
+
         button:hover {
             background-color: #2980b9;
         }
-        
+
+        .header-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header-image__img {
+            width: 100%;
+            max-width: 800px;
+            height: 100px;
+            object-fit: contain;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -109,8 +124,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
+        <div class="header-image">
+            <img src="../static/imagenes/ENCABEZADO_ACTIVOS.png" alt="Encabezado" class="header-image__img">
+        </div>
         <h1>Registro de Activos</h1>
         <form action="{{ url_for('procesar_formulario2') }}" method="post">
             <div class="form-section">
@@ -203,4 +222,5 @@
         </form>
     </div>
 </body>
+
 </html>
