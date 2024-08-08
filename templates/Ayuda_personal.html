@@ -43,11 +43,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="experience">
-                    <h2 class="text-center mb-4">SOLICITAR AYUDA</h2>
+                    <h2 class="text-center mb-4" style="color: #28289D;">SOLICITAR AYUDA</h2>
                     <p class="text-center mb-4">¿Tienes inconvenientes? Cuéntanos, lo resolveremos lo más pronto posible.</p>
                     <form id="helpForm" action="{{ url_for('procesar_formulario3') }}" method="post">
                         <fieldset>
-                            <legend>Información del Solicitante</legend>
+                            <legend style="color: #28289D;">Información del Solicitante</legend>
                             <div class="mb-3">
                                 <label for="nombre_medico" class="form-label">Nombre del Médico</label>
                                 <input type="text" class="form-control" id="nombre_medico" name="nombre_medico" required>
@@ -58,7 +58,7 @@
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend>Detalles del Inconveniente</legend>
+                            <legend style="color: #28289D;">Detalles del Inconveniente</legend>
                             <div class="mb-3">
                                 <label for="tipo_de_inconveniente" class="form-label">Tipo de Inconveniente</label>
                                 <select class="form-select" id="tipo_de_inconveniente" name="tipo_de_inconveniente" required>
