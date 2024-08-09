@@ -13,7 +13,7 @@
             --primary-color: #3498db;
             --secondary-color: #2ecc71;
             --background-color: #f5f7fa;
-            --text-color: #34495e;
+            --text-color: #FFFFFF;
             --sidebar-width: 250px;
         }
 
@@ -36,7 +36,7 @@
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background-color: #fff;
+            background-color:#28289D;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             position: fixed;
@@ -204,7 +204,7 @@
           <div class="sidebar-header">
               <img src="/static/imagenes/logo2.png" alt="hola doctor">
           </div>
-          <ul class="sidebar-menu">
+          <ul class="sidebar-menu" >
               <li><a href="/admin"><i class="fas fa-home"></i> Inicio</a></li>
               <li><a href="/plano"><i class="fas fa-map"></i> Mapa</a></li>
               <li>
@@ -280,30 +280,35 @@
           </ul>
       </aside>
       <main class="main-content">
-          <header class="header">
+          <header class="header" style="color: rgb(56, 31, 31);">
               <h1>Bienvenid@, {{ username }}</h1>
-              <div class="search-bar">
-                  <i class="fas fa-search"></i>
-                  <input type="text" placeholder="Buscar...">
-              </div>
+
           </header>
-          <section class="dashboard-cards">
+          <section class="dashboard-cards" style="color: rgb(56, 31, 31);">
               <div class="card">
-                  <h3>Total de Atenciones</h3>
-                  <p>1,234</p>
+                  <h3 >Medico General </h3>
+                  <p>94</p>
               </div>
               <div class="card">
-                  <h3>Atenciones Sura</h3>
-                  <p>567</p>
+                  <h3 >Psicologos</h3>
+                  <p>12</p>
               </div>
               <div class="card">
-                  <h3>Atenciones Comfama</h3>
-                  <p>432</p>
+                  <h3  >Pediatria</h3>
+                  <p>5</p>
               </div>
               <div class="card">
-                  <h3>Atenciones holadr</h3>
-                  <p>235</p>
+                <h3  >Dermatologia</h3>
+                <p>1</p>
+            </div>
+              <div class="card">
+                  <h3  >Administrativos</h3>
+                  <p>26</p>
               </div>
+              <div class="card">
+                <h3  >Puestos vacios</h3>
+                <p>86</p>
+            </div>
           </section>
           <section class="charts">
               <div class="chart-container">
