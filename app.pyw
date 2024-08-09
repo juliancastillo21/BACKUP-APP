@@ -1567,6 +1567,142 @@ def politicas_internas():
 
 
 
+#-------------------actas---------------------------------------------------------
+# 
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
+DATABASE2 = 'registro.db'
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE2)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+@app.route('/actas2')
+def actas2():
+    conn = get_db_connection()
+    actas = conn.execute("SELECT * FROM registro2 ORDER BY fecha_envio DESC").fetchall()
+    conn.close()
+    return render_template('actas2.html', actas=actas)
+
+@app.route('/descargar_acta_pdf/<int:acta_cedula>')
+def descargar_acta_pdf(acta_cedula):
+    conn = get_db_connection()
+    acta = conn.execute('SELECT * FROM registro2 WHERE cedula = ?', (acta_cedula,)).fetchone()
+    conn.close()
+
+    if acta:
+        # Generar el PDF
+        nombre_pdf = f'acta_puesto_{acta_cedula}.pdf'
+        pdf_path = os.path.join(app.root_path, 'static', nombre_pdf)
+        generar_pdf_desde_datos(acta, pdf_path)
+
+        return send_file(pdf_path, as_attachment=True, download_name=nombre_pdf)
+    else:
+        return 'Acta no encontrada'
+
+def generar_pdf_desde_datos(acta, pdf_path):
+    c = canvas.Canvas(pdf_path, pagesize=letter)
+
+    # Insertar imagen en la esquina superior derecha
+    img_path = os.path.join(app.root_path, 'logo2.jpg')
+    c.drawImage(img_path, letter[0]-3.3*inch, letter[1]-1*inch, width=3*inch, height=1*inch)
+
+    # Definir el contenido estático y dinámico de la plantilla
+    contenido = [
+        f"ACTA DE ENTREGA Y RETIRO DE PUESTOS DE TRABAJO",
+        f"",
+        f"Fecha: {acta['fecha_envio']}",
+        f"Nombre Completo: {acta['nombres_completos']}",
+        f"Cedula: {acta['cedula']}",
+        f"Cargo: {acta['cargo']}",
+        f"Numero Puesto: {acta['numero_puesto']}",
+        f"Celular Corporativo: {acta['extension']}",
+        
+        f"Estado: {acta['estado']}",
+    ]
+
+    # Configurar el tamaño de la página y la posición inicial del texto
+    x, y = 50, 750
+
+    # Escribir el contenido en el PDF
+    for line in contenido:
+        c.drawString(x, y, line)
+        y -= 25  # Espacio entre líneas
+
+    # Tabla de elementos de computadora
+    elementos_computadora = [
+        ["Portatil", acta['ml_pc']],
+        ["Guaya", acta['guaya']],
+        ["Monitor", acta['ml_pantalla']],
+        ["Mouse", acta['mause']],
+        ["Diadema", acta['diadema']]
+    ]
+    c.drawString(x, y-50, "Elementos de Computadora:")
+    draw_table(c, x, y-75, elementos_computadora)
+
+    # Tabla de elementos de oficina
+    elementos_oficina = [
+        ["Silla", acta['silla']],
+        ["Cubiculo", acta['cubiculo']],
+        ["Descansapies", acta['descansapies']],
+        ["Observaciones", acta['observaciones']]
+    ]
+    c.drawString(x, y-200, "Elementos de Oficina:")
+    draw_table(c, x, y-225, elementos_oficina)
+
+    # Espacio para las firmas y cargos
+    y -= 300  # Espacio adicional para separar la tabla del área de firmas
+
+    # Primera firma y cargo
+    c.drawString(x, y-50,  f"Firma: {acta['nombres_completos']}")
+    c.line(x + 50, y-60, x + 250, y-60)  # Línea para la primera firma
+    c.drawString(x, y-100, f"Cargo: {acta['cargo']}",)
+    c.drawString(x + 50, y-100, "______")  # Línea para el cargo 1
+
+    # Segunda firma y cargo
+    c.drawString(x + 300, y-50, "Entrega: Milena echavarria henao")
+    c.line(x + 350, y-60, x + 550, y-60)  # Línea para la segunda firma
+    c.drawString(x + 300, y-100, "Cargo: Lider operaciones holadr")
+    c.drawString(x + 350, y-100, "________")  # Línea para el cargo 2
+
+    c.save()
+
+def draw_table(c, x, y, data):
+    table = Table(data, colWidths=[180, 180])
+    table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TEXTCOLOR', (0, 0), (-1, -1), (0, 0, 0)),  # Color del texto
+        ('INNERGRID', (0, 0), (-1, -1), 0.25, (0, 0, 0)),  # Borde interno
+        ('BOX', (0, 0), (-1, -1), 0.25, (0, 0, 0)),  # Borde externo
+    ]))
+    width, height = table.wrapOn(c, 400, 200)
+    table.drawOn(c, x + (400 - width) / 2, y - height)
+    
+    
+@app.route('/exportar_a_excel_actas')
+def exportar_a_excel_actas():
+    # Conectar a la base de datos y obtener los datos
+    with sqlite3.connect('registro.db') as conn:
+        df = pd.read_sql_query("SELECT * FROM registro2", conn)
+
+    # Crear un archivo Excel en memoria
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='actas')
+    writer._save()
+
+    # Asegurarse de que el archivo Excel se cierre correctamente
+    writer.close()
+
+    # Crear un objeto de respuesta Flask que envía el archivo Excel
+    output.seek(0)
+    return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='actas de ingreso y retiro.xlsx')
+# -------------------FINALIZA FORMULARIO DE REGISTRO DE ACTIVOS------------------------------------
+
 #--------------------------FINALIZA SESSION DE CONTABILIDAD----------------------
 if __name__ == '__main__':
     app.run(debug=True,  host='0.0.0.0', port=5000)
