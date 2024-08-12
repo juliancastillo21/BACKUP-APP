@@ -27,8 +27,8 @@
 <style>
     /* Estilos generales */
     body {
-        font-family: 'Arial', sans-serif;
-    }
+    font-family: 'Arial', sans-serif;
+}
 
     /* Estilos de navegación y diseño */
     .fixed-top,
@@ -64,60 +64,62 @@
         }
     }
     .container {
-        max-width: 1200px; /* Aumenta el ancho máximo del contenedor */
-        width: 100%;
-        padding: 0; /* Elimina el padding para que el carrusel ocupe todo el ancho */
-    }
+    max-width: 500px;
+    width: 100%;
+    padding: 0;
+}
 
-        /* Estilos para el carrusel */
-        #carouselExampleIndicators {
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        margin-bottom: 30px;
-    }
+/* Estilos para el carrusel */
+#carouselExampleIndicators {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
 
+.carousel-inner img {
+    width: 500%;
+    height: 500%;
+    object-fit: cover;
+}
+
+.carousel-item img {
+    object-fit: cover; /* Recorta la imagen para que ocupe todo el espacio disponible */
+    width: 100%;
+    height: 100%; /* La imagen ocupará todo el contenedor del carrusel */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 0.7;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.carousel-indicators {
+    bottom: 20px;
+}
+
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
     .carousel-inner {
-        border-radius: 15px;
-        height: 600px; /* Aumenta la altura del carrusel */
+        height: 700px; /* Altura menor para pantallas pequeñas */
     }
+}
 
-    .carousel-item img {
-        object-fit: cover;
-        height: 100%; /* La imagen ocupará toda la altura del item */
-        width: 100%; /* La imagen ocupará todo el ancho disponible */
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5%;
-        opacity: 0.7;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: rgba(0,0,0,0.5);
-        border-radius: 50%;
-        padding: 20px;
-    }
-
-    .carousel-indicators {
-        bottom: 20px;
-    }
-
-    .carousel-indicators button {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin: 0 5px;
-    }
-
-    /* Estilos responsivos */
-    @media (max-width: 768px) {
-        .carousel-item img {
-            height: 400px;
-        }
-    }
 
     .sb-nav-fixed .sb-topnav {
         z-index: 1039;
@@ -147,7 +149,7 @@
     }
 
     .sb-sidenav-menu .nav {
-        padding: 0 15px;
+        padding: 0 5px;
         flex-direction: column;
         flex-wrap: nowrap;
     }
@@ -314,13 +316,11 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <!-- Menú de navegación -->
                         <!-- Logo -->
-
                         <div class="navbar-brand">
                             <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor">
                         </div>
-
+                        <!-- Menú de navegación -->
                         <a class="nav-link" href="/Ayuda">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
                             ¿Necesitas ayuda?
@@ -363,17 +363,15 @@
                 <div class="container mt-4">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="../static/imagenes/Olimpiadas.jpeg" class="d-block w-100"
-                                    alt="Profesional médico">
+                                <a href="https://forms.office.com/r/geGZngVbeb" target="_blank">
+                                    <img src="../static/imagenes/Olimpiadas.jpeg" class="d-block w-100" alt="Profesional médico">
+                                </a>
                             </div>
                             <div class="carousel-item">
                                 <img src="../static/imagenes/Aviso.jpeg" class="d-block w-100" alt="Hospital">
@@ -382,19 +380,65 @@
                                 <img src="../static/imagenes/Cafe.jpeg" class="d-block w-100" alt="Equipo médico">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Anterior</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Siguiente</span>
                         </button>
                     </div>
                 </div>
+            </main>
         </div>
+    </div>
+
+    <!-- Script para cálculo de IMC -->
+    <script>
+        function calcularIMC() {
+            const peso = document.getElementById('peso').value;
+            const altura = document.getElementById('altura').value;
+
+            if (peso && altura) {
+                const imc = peso / (altura * altura);
+                let estado = '';
+
+                if (imc < 18.5) {
+                    estado = 'Bajo peso';
+                } else if (imc >= 18.6 && imc < 24.9) {
+                    estado = 'SALUDABLE';
+                } else if (imc >= 25 && imc < 29.9) {
+                    estado = 'CON SOBREPESO';
+                } else if (imc >= 30 && imc < 39.9) {
+                    estado = 'CON OBESIDAD';
+                } else {
+                    estado = 'OBESIDAD EXTREMA DE ALTO RIESGO';
+                }
+
+                // Mostrar el resultado en un modal
+                const modal = Swal.fire({
+                    title: 'Índice de Masa Corporal (IMC)',
+                    html: `Su IMC es: <strong>${imc.toFixed(2)}</strong><br>Estado: <strong>${estado}</strong>`,
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                });
+
+                // Limpiar los campos al cerrar el modal
+                modal.then((result) => {
+                    document.getElementById('peso').value = '';
+                    document.getElementById('altura').value = '';
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, ingrese su peso y altura.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        }
+    </script>
 </body>
 
 <!-- -->
