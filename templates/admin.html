@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>holadr app - Dashboard</title>
@@ -26,7 +27,7 @@
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--background-color);
-            color: var(--text-color);
+
         }
 
         .dashboard {
@@ -36,7 +37,7 @@
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background-color:#28289D;
+            background-color: #28289D;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             position: fixed;
@@ -60,7 +61,7 @@
         }
 
         .sidebar-menu a {
-            color: var(--text-color);
+            color: #FFFFFF;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -73,7 +74,7 @@
         }
 
         .sidebar-menu a:hover {
-            color: var(--primary-color);
+            color: #f0f0f0;
         }
 
         .sidebar-menu ul {
@@ -81,7 +82,7 @@
             padding-left: 20px;
         }
 
-        .sidebar-menu > li > a {
+        .sidebar-menu>li>a {
             font-weight: bold;
         }
 
@@ -110,6 +111,8 @@
             flex-grow: 1;
             margin-left: var(--sidebar-width);
             padding: 20px;
+            color: #000000;
+            /* Black text for main content */
         }
 
         .header {
@@ -117,6 +120,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            color: #000000;
+            /* Black text for header */
         }
 
         .search-bar {
@@ -133,10 +138,6 @@
             outline: none;
             padding: 5px;
             font-size: 14px;
-        }
-
-        .search-bar i {
-            color: var(--text-color);
         }
 
         .dashboard-cards {
@@ -156,6 +157,8 @@
         .card h3 {
             margin-bottom: 10px;
             font-size: 18px;
+            color: #000000;
+            /* Black text for card titles */
         }
 
         .card p {
@@ -175,6 +178,18 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #000000;
+            /* Black text for chart containers */
+        }
+
+        .modal-content {
+            color: #000000;
+            /* Black text for modal content */
+        }
+
+        .modal-title {
+            color: #000000;
+            /* Black text for modal titles */
         }
 
         @media (max-width: 768px) {
@@ -198,196 +213,299 @@
         }
     </style>
 </head>
+
 <body>
-  <div class="dashboard">
-      <aside class="sidebar">
-          <div class="sidebar-header">
-              <img src="/static/imagenes/logo2.png" alt="hola doctor">
-          </div>
-          <ul class="sidebar-menu" >
-              <li><a href="/admin"><i class="fas fa-home"></i> Inicio</a></li>
-              <li><a href="/plano"><i class="fas fa-map"></i> Mapa</a></li>
-              <li>
-                  <a href="#nominaSubmenu" data-toggle="collapse"><i class="fas fa-money-check-alt"></i> Nomina</a>
-                  <ul class="collapse" id="nominaSubmenu">
-                      <li><a href="/plantilla_incapacidades"><i class="fas fa-notes-medical"></i> Incapacidades</a></li>
-                      <li><a href="/plantilla_nomina"><i class="fas fa-file-alt"></i> Otras novedades</a></li>
-                      <li><a href="/show_data_of_the_day"><i class="fas fa-user-md"></i> Registro medicos</a></li>
-                      <li><a href="/nomina"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#operacionesSubmenu" data-toggle="collapse"><i class="fas fa-cogs"></i> Operaciones</a>
-                  <ul class="collapse" id="operacionesSubmenu">
-                      <li><a href="/estado_solicitud"><i class="fas fa-headset"></i> Soporte</a></li>
-                      <li><a href="/inventario"><i class="fas fa-boxes"></i> Inventario</a></li>
-                      <li><a href="/lineas"><i class="fas fa-phone-alt"></i> Lineas</a></li>
-                      <li><a href="/inventario_milenio"><i class="fas fa-warehouse"></i> Inventario Outsourcing</a></li>
-                      <li><a href="/plantilla_mantenimiento"><i class="fas fa-tools"></i> Mantenimiento locativo</a></li>
-                      <li><a href="/actas2"><i class="fas fa-file-signature"></i> Actas</a></li>
-                      <li><a href="/operaciones"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#talentoSubmenu" data-toggle="collapse"><i class="fas fa-users"></i> Talento humano</a>
-                  <ul class="collapse" id="talentoSubmenu">
-                      <li><a href="/personal"><i class="fas fa-user-check"></i> Personal activo</a></li>
-                      <li><a href="/talento_humano"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#contabilidadSubmenu" data-toggle="collapse"><i class="fas fa-calculator"></i> Contabilidad</a>
-                  <ul class="collapse" id="contabilidadSubmenu">
-                      <li><a href="/rips_comfama"><i class="fas fa-file-invoice-dollar"></i> Rips comfama</a></li>
-                      <li><a href="/rips_sura"><i class="fas fa-file-invoice-dollar"></i> Rips sura</a></li>
-                      <li><a href="/contabilidad"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#calidadSubmenu" data-toggle="collapse"><i class="fas fa-chart-line"></i> Calidad</a>
-                  <ul class="collapse" id="calidadSubmenu">
-                      <li>
-                          <a href="#mantenimientoSubmenu" data-toggle="collapse"><i class="fas fa-toolbox"></i> Mantenimiento locativo</a>
-                          <ul class="collapse" id="mantenimientoSubmenu">
-                              <li><a href="#" data-toggle="modal" data-target="#mantenimientoModal"><i class="fas fa-plus-circle"></i> Solicitar mantenimiento</a></li>
-                              <li><a href="/plantilla_mantenimiento"><i class="fas fa-history"></i> Historial mantenimiento</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#crearActividadSubmenu" data-toggle="collapse"><i class="fas fa-tasks"></i> Crear actividades</a>
-                  <ul class="collapse" id="crearActividadSubmenu">
-                      <li><a href="/gestionar_actividades"><i class="fas fa-list-ul"></i> Gestionar Actividades</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#registrarSubmenu" data-toggle="collapse"><i class="fas fa-clipboard-list"></i> Registrar novedades</a>
-                  <ul class="collapse" id="registrarSubmenu">
-                      <li><a href="/registrar_incapacidad"><i class="fas fa-bed"></i> Registrar Incapacidades</a></li>
-                      <li><a href="/registrar_novedad"><i class="fas fa-exclamation-circle"></i> Registrar Otras Novedades</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#ripsSubmenu" data-toggle="collapse"><i class="fas fa-upload"></i> Cargar rips</a>
-                  <ul class="collapse" id="ripsSubmenu">
-                      <li><a href="#" data-toggle="modal" data-target="#ripsComfamaModal"><i class="fas fa-file-upload"></i> Rips comfama</a></li>
-                      <li><a href="#" data-toggle="modal" data-target="#ripsSuraModal"><i class="fas fa-file-upload"></i> Rips sura</a></li>
-                  </ul>
-              </li>
-              <li><a href="#"><i class="fas fa-book"></i> Documentacion</a></li>
-              <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
-          </ul>
-      </aside>
-      <main class="main-content">
-          <header class="header" style="color: rgb(56, 31, 31);">
-              <h1>Bienvenid@, {{ username }}</h1>
-
-          </header>
-          <section class="dashboard-cards" style="color: rgb(56, 31, 31);">
-              <div class="card">
-                  <h3 >Medico General </h3>
-                  <p>94</p>
-              </div>
-              <div class="card">
-                  <h3 >Psicologos</h3>
-                  <p>12</p>
-              </div>
-              <div class="card">
-                  <h3  >Pediatria</h3>
-                  <p>5</p>
-              </div>
-              <div class="card">
-                <h3  >Dermatologia</h3>
-                <p>1</p>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/static/imagenes/logo2.png" alt="hola doctor">
             </div>
-              <div class="card">
-                  <h3  >Administrativos</h3>
-                  <p>26</p>
-              </div>
-              <div class="card">
-                <h3  >Puestos vacios</h3>
-                <p>86</p>
+            <ul class="sidebar-menu">
+                <li><a href="/admin"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="/plano"><i class="fas fa-map"></i> Mapa</a></li>
+                <li>
+                    <a href="#nominaSubmenu" data-toggle="collapse"><i class="fas fa-money-check-alt"></i> Nomina</a>
+                    <ul class="collapse" id="nominaSubmenu">
+                        <li><a href="/plantilla_incapacidades"><i class="fas fa-notes-medical"></i> Incapacidades</a>
+                        </li>
+                        <li><a href="/plantilla_nomina"><i class="fas fa-file-alt"></i> Otras novedades</a></li>
+                        <li><a href="/show_data_of_the_day"><i class="fas fa-user-md"></i> Registro medicos</a></li>
+                        <li><a href="/nomina"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#operacionesSubmenu" data-toggle="collapse"><i class="fas fa-cogs"></i> Operaciones</a>
+                    <ul class="collapse" id="operacionesSubmenu">
+                        <li><a href="/estado_solicitud"><i class="fas fa-headset"></i> Soporte</a></li>
+                        <li><a href="/inventario"><i class="fas fa-boxes"></i> Inventario</a></li>
+                        <li><a href="/lineas"><i class="fas fa-phone-alt"></i> Lineas</a></li>
+                        <li><a href="/inventario_milenio"><i class="fas fa-warehouse"></i> Inventario Outsourcing</a>
+                        </li>
+                        <li><a href="/plantilla_mantenimiento"><i class="fas fa-tools"></i> Mantenimiento locativo</a>
+                        </li>
+                        <li><a href="/actas2"><i class="fas fa-file-signature"></i> Actas</a></li>
+                        <li><a href="/operaciones"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#talentoSubmenu" data-toggle="collapse"><i class="fas fa-users"></i> Talento humano</a>
+                    <ul class="collapse" id="talentoSubmenu">
+                        <li><a href="/personal"><i class="fas fa-user-check"></i> Personal activo</a></li>
+                        <li><a href="/talento_humano"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#contabilidadSubmenu" data-toggle="collapse"><i class="fas fa-calculator"></i>
+                        Contabilidad</a>
+                    <ul class="collapse" id="contabilidadSubmenu">
+                        <li><a href="/rips_comfama"><i class="fas fa-file-invoice-dollar"></i> Rips comfama</a></li>
+                        <li><a href="/rips_sura"><i class="fas fa-file-invoice-dollar"></i> Rips sura</a></li>
+                        <li><a href="/contabilidad"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#calidadSubmenu" data-toggle="collapse"><i class="fas fa-chart-line"></i> Calidad</a>
+                    <ul class="collapse" id="calidadSubmenu">
+                        <li>
+                            <a href="#mantenimientoSubmenu" data-toggle="collapse"><i class="fas fa-toolbox"></i>
+                                Mantenimiento locativo</a>
+                            <ul class="collapse" id="mantenimientoSubmenu">
+                                <li><a href="#" data-toggle="modal" data-target="#mantenimientoModal"><i
+                                            class="fas fa-plus-circle"></i> Solicitar mantenimiento</a></li>
+                                <li><a href="/plantilla_mantenimiento"><i class="fas fa-history"></i> Historial
+                                        mantenimiento</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#crearActividadSubmenu" data-toggle="collapse"><i class="fas fa-tasks"></i> Crear
+                        actividades</a>
+                    <ul class="collapse" id="crearActividadSubmenu">
+                        <li><a href="/gestionar_actividades"><i class="fas fa-list-ul"></i> Gestionar Actividades</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#registrarSubmenu" data-toggle="collapse"><i class="fas fa-clipboard-list"></i> Registrar
+                        novedades</a>
+                    <ul class="collapse" id="registrarSubmenu">
+                        <li><a href="/registrar_incapacidad"><i class="fas fa-bed"></i> Registrar Incapacidades</a></li>
+                        <li><a href="/registrar_novedad"><i class="fas fa-exclamation-circle"></i> Registrar Otras
+                                Novedades</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#ripsSubmenu" data-toggle="collapse"><i class="fas fa-upload"></i> Cargar rips</a>
+                    <ul class="collapse" id="ripsSubmenu">
+                        <li><a href="#" data-toggle="modal" data-target="#ripsComfamaModal"><i
+                                    class="fas fa-file-upload"></i> Rips comfama</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#ripsSuraModal"><i
+                                    class="fas fa-file-upload"></i> Rips sura</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fas fa-book"></i> Documentacion</a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <header class="header" style="color: rgb(56, 31, 31);">
+                <h1>Bienvenid@, {{ username }}</h1>
+
+            </header>
+            <section class="dashboard-cards" style="color: rgb(56, 31, 31);">
+                <div class="card">
+                    <h3>Medico General </h3>
+                    <p>94</p>
+                </div>
+                <div class="card">
+                    <h3>Psicologos</h3>
+                    <p>12</p>
+                </div>
+                <div class="card">
+                    <h3>Pediatria</h3>
+                    <p>5</p>
+                </div>
+                <div class="card">
+                    <h3>Dermatologia</h3>
+                    <p>1</p>
+                </div>
+                <div class="card">
+                    <h3>Administrativos</h3>
+                    <p>26</p>
+                </div>
+                <div class="card">
+                    <h3>Puestos vacios</h3>
+                    <p>86</p>
+                </div>
+            </section>
+            <section class="charts">
+                <div class="chart-container">
+                    <canvas id="atencionesChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="comparativoChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal Mantenimiento -->
+    <div class="modal fade" id="mantenimientoModal" tabindex="-1" role="dialog"
+        aria-labelledby="mantenimientoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mantenimientoModalLabel">Solicitud de mantenimiento locativo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/mantenimiento_locativo" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="lider_a_cargo">Líder a cargo:</label>
+                            <input type="text" class="form-control" id="lider_a_cargo" name="lider_a_cargo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ubicacion">Ubicación de solicitud:</label>
+                            <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle_solicitud">Detalle de la solicitud:</label>
+                            <textarea class="form-control" id="detalle_solicitud" name="detalle_solicitud" rows="3"
+                                required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad">Prioridad</label>
+                            <select class="form-control" id="prioridad" name="prioridad" required>
+                                <option value="baja">Baja</option>
+                                <option value="media">Media</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Enviar
+                                solicitud</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </section>
-          <section class="charts">
-              <div class="chart-container">
-                  <canvas id="atencionesChart"></canvas>
-              </div>
-              <div class="chart-container">
-                  <canvas id="comparativoChart"></canvas>
-              </div>
-          </section>
-      </main>
-  </div>
+        </div>
+    </div>
+    <!-- Modal Comfama -->
+    <div class="modal fade" id="ripsComfamaModal" tabindex="-1" role="dialog" aria-labelledby="ripsComfamaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ripsComfamaModalLabel">Cargar Rips Comfama</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/subir_rips/comfama" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="archivo">Seleccionar archivo:</label>
+                            <input type="file" class="form-control-file" id="archivo" name="archivo" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Subir
+                                archivo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!-- Modales -->
-  <div class="modal fade" id="mantenimientoModal" tabindex="-1" role="dialog" aria-labelledby="mantenimientoModalLabel" aria-hidden="true">
-      <!-- Contenido del modal de mantenimiento -->
-  </div>
+    <!-- Modal Sura -->
+    <div class="modal fade" id="ripsSuraModal" tabindex="-1" role="dialog" aria-labelledby="ripsSuraModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ripsSuraModalLabel">Cargar Rips Sura</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/subir_rips/sura" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="archivo_sura">Seleccionar archivo:</label>
+                            <input type="file" class="form-control-file" id="archivo_sura" name="archivo" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Subir
+                                archivo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="modal fade" id="ripsComfamaModal" tabindex="-1" role="dialog" aria-labelledby="ripsComfamaModalLabel" aria-hidden="true">
-      <!-- Contenido del modal de RIPS Comfama -->
-  </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Gráfico de atenciones mensuales
+        var ctx1 = document.getElementById('atencionesChart').getContext('2d');
+        var atencionesChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril'],
+                datasets: [{
+                    label: 'Atenciones Totales',
+                    data: [1200, 1900, 3000, 2500],
+                    borderColor: '#3498db',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Atenciones Mensuales'
+                    }
+                }
+            }
+        });
 
-  <div class="modal fade" id="ripsSuraModal" tabindex="-1" role="dialog" aria-labelledby="ripsSuraModalLabel" aria-hidden="true">
-      <!-- Contenido del modal de RIPS Sura -->
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-      // Gráfico de atenciones mensuales
-      var ctx1 = document.getElementById('atencionesChart').getContext('2d');
-      var atencionesChart = new Chart(ctx1, {
-          type: 'line',
-          data: {
-              labels: ['Enero', 'Febrero', 'Marzo', 'Abril'],
-              datasets: [{
-                  label: 'Atenciones Totales',
-                  data: [1200, 1900, 3000, 2500],
-                  borderColor: '#3498db',
-                  tension: 0.1
-              }]
-          },
-          options: {
-              responsive: true,
-              plugins: {
-                  title: {
-                      display: true,
-                      text: 'Atenciones Mensuales'
-                  }
-              }
-          }
-      });
-
-      // Gráfico comparativo
-      var ctx2 = document.getElementById('comparativoChart').getContext('2d');
-      var comparativoChart = new Chart(ctx2, {
-          type: 'bar',
-          data: {
-              labels: ['Sura', 'Comfama', 'holadr'],
-              datasets: [{
-                  label: 'Atenciones por Entidad',
-                  data: [567, 432, 235],
-                  backgroundColor: [
-                      '#3498db',
-                      '#2ecc71',
-                      '#e74c3c'
-                  ]
-              }]
-          },
-          options: {
-              responsive: true,
-              plugins: {
-                  title: {
-                      display: true,
-                      text: 'Comparativo de Atenciones por Entidad'
-                  }
-              }
-          }
-      });
-  </script>
+        // Gráfico comparativo
+        var ctx2 = document.getElementById('comparativoChart').getContext('2d');
+        var comparativoChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Sura', 'Comfama', 'holadr'],
+                datasets: [{
+                    label: 'Atenciones por Entidad',
+                    data: [567, 432, 235],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#e74c3c'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Comparativo de Atenciones por Entidad'
+                    }
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>
