@@ -883,7 +883,9 @@ def insert2():
 
 @app.route('/plano')
 def plano():
-    return render_template('plano.html')
+    # Aquí puedes pasar datos dinámicos a la plantilla
+    return render_template('plano.html', title='Plano HolaDr', iframe_src='https://www.canva.com/design/DAGCranO9II/jqxD1juKahpc3WvTqbUAfw/view?embed', link_href='https://www.canva.com/design/DAGCranO9II/jqxD1juKahpc3WvTqbUAfw/view?utm_content=DAGCranO9II&utm_campaign=designshare&utm_medium=embeds&utm_source=link', link_text='A-01')
+
 
 
 @app.route('/exportar_a_excel5')
