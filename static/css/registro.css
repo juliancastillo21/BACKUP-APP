@@ -1,3 +1,31 @@
+h1 {
+	color: #28289d;
+}
+.btn-custom {
+	background-color: #28289d;
+	color: white;
+	border: none;
+}
+.btn-custom:hover {
+	background-color: #1f1e7d; /* Un poco más oscuro en hover */
+	color: white;
+}
+
+/* Estilo para reducir el tamaño del nav */
+.navbar {
+	padding: 0.5rem 1rem; /* Reduce el padding */
+	background-color: #28289D; /* Color de fondo */
+}
+
+.navbar-brand {
+	font-size: 1rem; /* Reduce el tamaño del texto del enlace */
+}
+
+.navbar img {
+	height: 30px; /* Ajusta la altura de la imagen */
+	margin-right: 10px; /* Espaciado entre la imagen y el texto */
+}
+
 * {
 	box-sizing: border-box;
 }

@@ -1,0 +1,21 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar {
+    background-color: #28289D;
+}
+.experience {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 30px;
+}
+.btn-primary {
+    background-color: #28289D;
+    border-color: #28289D;
+}
+.btn-primary:hover {
+    background-color: #1e1e7a;
+    border-color: #1e1e7a;
+}
