@@ -13,10 +13,6 @@ import os
 import csv
 from werkzeug.utils import secure_filename
 import io
-# from flask_mail import Mail, Message
-# import matplotlib.pyplot as plt
-
-
 
 app = Flask(__name__)
 app.secret_key = 'Admin12345*+'
@@ -794,23 +790,6 @@ def lineas():
     df = pd.DataFrame(data)
     df['fecha'] = pd.to_datetime(df['fecha'])
 
-    # Graficar
-    # plt.figure(figsize=(10, 6))
-
-    # plt.plot(df['fecha'], df['cantidad_total'], marker='o', label='Total de líneas')
-    # plt.plot(df['fecha'], df['cantidad_ocupadas'], marker='o', label='Líneas ocupadas')
-    # plt.plot(df['fecha'], df['cantidad_disponible'], marker='o', label='Líneas disponibles')
-
-    # plt.title('Estado de líneas')
-    # plt.xlabel('Fecha')
-    # plt.ylabel('Cantidad de líneas')
-    # plt.legend()
-    # plt.grid(True)
-    # plt.xticks(rotation=45)
-
-    # plt.tight_layout()
-    # plt.savefig('static/lineas_plot.png')  # Guardar la imagen del gráfico
-    
     return render_template('lineas.html', asignaciones=asignaciones, personal_info=personal_info)
     return send_file('static/lineas_plot.png', mimetype='image/png')
 
@@ -1209,17 +1188,6 @@ def guardar_solicitud(lider_a_cargo, ubicacion, detalle_solicitud, prioridad, fe
             conexion.commit()
     except Exception as e:
         print(f"Error al guardar la solicitud: {e}")
-
-# def enviar_correo(lider_a_cargo, ubicacion, detalle_solicitud, prioridad, fecha_envio, estado):
-#     try:
-#         destino = ''
-#         mensaje = Message('Nueva Solicitud de Mantenimiento Locativo',
-#                           sender=app.config['MAIL_USERNAME'],
-#                           recipients=[destino])
-#         mensaje.body = f"Lider a cargo: {lider_a_cargo}\nUbicación: {ubicacion}\nDetalle de la Solicitud: {detalle_solicitud}\nPrioridad: {prioridad}\nFecha de envio: {fecha_envio}\nEstado: {estado}"
-#         mail.send(mensaje)
-#     except Exception as e:
-#         print(f"Error al enviar el correo: {e}")
 
 @app.route('/mantenimiento_locativo', methods=['GET', 'POST'])
 def mantenimiento_locativo():
