@@ -89,24 +89,48 @@
                         <td>{{ actividad[4] }}</td>
                         <td>{{ actividad[5] }}</td>
                         <td>
-                            <form action="{{ url_for('cambiar_estado', actividad_id=actividad[0]) }}" method="post" class="d-flex">
-                                <select name="estado" class="form-select form-select-sm me-2">
-                                    <option value="Pendiente" {% if actividad[5] == "Pendiente" %}selected{% endif %}>Pendiente</option>
-                                    <option value="En Progreso" {% if actividad[5] == "En Progreso" %}selected{% endif %}>En Progreso</option>
-                                    <option value="Completada" {% if actividad[5] == "Completada" %}selected{% endif %}>Completada</option>
+                            <form action="{{ url_for('cambiar_estado', actividad_id=actividad[0]) }}" method="post" class="d-inline">
+                                <select name="estado" class="form-select">
+                                    <option value="Pendiente" {% if actividad[5] == 'Pendiente' %}selected{% endif %}>Pendiente</option>
+                                    <option value="En Proceso" {% if actividad[5] == 'En Proceso' %}selected{% endif %}>En Proceso</option>
+                                    <option value="Completada" {% if actividad[5] == 'Completada' %}selected{% endif %}>Completada</option>
                                 </select>
-                                <button type="submit" class="btn btn-primary btn-sm">Cambiar</button>
+                                <button type="submit" class="btn btn-primary mt-2">Cambiar Estado</button>
                             </form>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="modalAlerta" tabindex="-1" aria-labelledby="modalAlertaLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalAlertaLabel">Advertencia</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            No se puede cambiar el estado. La actividad ya ha sido completada y no se puede modificar.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
+    
+        <!-- Activar el modal si hay un mensaje modal -->
+        {% if modal %}
+        <script>
+            var myModal = new bootstrap.Modal(document.getElementById('modalAlerta'));
+            myModal.show();
+        </script>
+        {% endif %}
         <div class="text-center mt-4">
             <a href="/admin" class="btn btn-secondary">Regresar al inicio</a>
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>

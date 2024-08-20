@@ -976,14 +976,33 @@ def modificar_actividad(asignacion_id):
 
 @app.route('/cambiar_estado/<int:actividad_id>', methods=['POST'])
 def cambiar_estado(actividad_id):
-    nuevo_estado = request.form['estado']  # Corregido: la clave es 'estado'
     conn = sqlite3.connect('actividades_aprendices.db')
     c = conn.cursor()
+    
+    # Verificar el estado actual de la actividad
+    c.execute("SELECT estado FROM actividades_aprendices WHERE id=?", (actividad_id,))
+    estado_actual = c.fetchone()[0]
+    
+    if estado_actual == "Completada":
+        conn.close()
+        # Activar la ventana modal
+        return render_template('gestionar_actividades.html', actividades=get_actividades(), modal=True)
+    
+    # Actualizar el estado si no está completada
+    nuevo_estado = request.form['estado']
     c.execute("UPDATE actividades_aprendices SET estado=? WHERE id=?", (nuevo_estado, actividad_id))
     conn.commit()
     conn.close()
     flash('Estado de la actividad actualizado exitosamente.')
     return redirect(url_for('gestionar_actividades'))
+
+def get_actividades():
+    conn = sqlite3.connect('actividades_aprendices.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM actividades_aprendices")
+    actividades = c.fetchall()
+    conn.close()
+    return actividades
 
 
 #-------------------------FINALIZA SESSION PRACTICANTES--------------------------
