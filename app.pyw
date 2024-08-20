@@ -132,6 +132,12 @@ def logout():
     session.pop('role', None)
     return redirect(url_for('login'))
 
+
+
+
+
+
+
 #---------------------FINALIZA SESSION LOGIN-------------------------------
 
 
@@ -731,6 +737,31 @@ def inventario():
         cursor.execute("SELECT numero_puesto FROM registro")
         inventario_info = cursor.fetchall()
     return render_template('inventario.html', asignacionesinventario=asignacionesinventario, inventario_info=inventario_info)
+
+@app.route('/historial', methods=['GET', 'POST'])
+def historial():
+    if 'username' in session and session['role'] == 'administrativo':
+        if request.method == 'POST':
+            medico = request.form.get('medico')
+            try:
+                with closing(connect_db5()) as db:
+                    cursor = db.cursor()
+                    
+                    # Consultar 'cargo', 'ml_pc', y 'ml_pantalla' del médico
+                    cursor.execute("SELECT cargo, ml_pc, ml_pantalla FROM registro WHERE nombres_completos = ?", (medico,))
+                    resultado = cursor.fetchone()
+                    
+                    if resultado:
+                        cargo, ml_pc, ml_pantalla = resultado
+                        return render_template('historial.html', medico=medico, resultado={'cargo': cargo, 'ml_pc': ml_pc, 'ml_pantalla': ml_pantalla})
+                    else:
+                        mensaje_error = "No se encontró el historial del equipo para el médico ingresado."
+                        return render_template('historial.html', error=mensaje_error)
+            except sqlite3.DatabaseError as e:
+                return f"Error de base de datos: {e}", 500
+        
+        return render_template('historial.html')
+    return redirect(url_for('login'))
 
 # Ruta para actualizar un registro en la base de datos+
 @app.route('/update5', methods=['POST'])
