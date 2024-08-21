@@ -1004,6 +1004,16 @@ def get_actividades():
     conn.close()
     return actividades
 
+@app.route('/agregar_observacion/<int:actividad_id>', methods=['POST'])
+def agregar_observacion(actividad_id):
+    observacion = request.form['observacion']
+    conn = sqlite3.connect('actividades_aprendices.db')
+    c = conn.cursor()
+    c.execute("UPDATE actividades_aprendices SET observacion=? WHERE id=?", (observacion, actividad_id))
+    conn.commit()
+    conn.close()
+    flash('Observación guardada exitosamente.')
+    return redirect(url_for('gestionar_actividades'))
 
 #-------------------------FINALIZA SESSION PRACTICANTES--------------------------
 #--------------------------INICIA SESSION DE CONTABILIDAD------------------------
