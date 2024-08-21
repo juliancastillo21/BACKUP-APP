@@ -945,7 +945,8 @@ def gestionar_actividades():
     else:
         conn = sqlite3.connect('actividades_aprendices.db')
         c = conn.cursor()
-        c.execute("SELECT * FROM actividades_aprendices")
+        # Ordena las actividades por fecha de asignación en orden descendente
+        c.execute("SELECT * FROM actividades_aprendices ORDER BY fecha_asignacion DESC")
         actividades = c.fetchall()
         conn.close()
         return render_template('gestionar_actividades.html', actividades=actividades)
