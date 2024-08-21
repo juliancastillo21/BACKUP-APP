@@ -1,11 +1,7 @@
-* {
-	box-sizing: border-box;
-}
-
 body {
 	font-family: 'Roboto', sans-serif;
-	background: 	
-    #ECECEC;
+	background:
+		#ECECEC;
 }
 
 main {
@@ -15,48 +11,40 @@ main {
 	padding: 40px;
 }
 
-.nombre
-
-
-
-{
-    display: flex;
-    align-items: start;
-   
-
-    
+.nombre {
+	display: flex;
+	align-items: start;
 }
+
 .formulario_grupo {
-    display: flex; /* Esto hace que los elementos hijos se muestren en línea */
-    flex-direction: column; /* Esto asegura que los elementos hijos se apilen verticalmente dentro de cada grupo */
-    margin-bottom: 30px; /* Espacio entre cada grupo */
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
 }
 
-/* Estilos para el contenedor principal del formulario */
 #formulario {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si no hay suficiente espacio */
-    justify-content: space-between; /* Distribuye el espacio entre los elementos de manera uniforme */
-    align-items: center; /* Alinea los elementos al inicio del contenedor */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
 }
 
-/* Estilos para los elementos de entrada y selección dentro de los grupos */
 .formulario__grupo-input {
-    display: flex;
-    align-items: center; /* Alinea los elementos de entrada y selección verticalmente */
+	display: flex;
+	align-items: center;
 }
 
-/* Estilos para el botón de envío */
 .formulario {
 	display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si no hay suficiente espacio */
-    justify-content: space-between; /* Distribuye el espacio entre los elementos de manera uniforme */
-    align-items: flex-start; /* Alinea los elementos al inicio del contenedor */
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
 }
+
 .formulario__grupo {
-    display: flex; /* Esto hace que los elementos hijos se muestren en línea */
-    flex-direction: column ; /* Esto asegura que los elementos hijos se apilen verticalmente dentro de cada grupo */
-    margin-bottom: 20px; /* Espacio entre cada grupo */
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
 }
 
 .formulario__label {
@@ -68,7 +56,7 @@ main {
 
 .formulario__grupo-input {
 	display: flex;
-    align-items: center; /* Alinea los elementos de entrada y selección verticalmente */
+	align-items: center;
 }
 
 .formulario__input {
@@ -85,7 +73,7 @@ main {
 .formulario__input:focus {
 	border: 3px solid #0075FF;
 	outline: none;
-	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+	box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
 }
 
 .formulario__input-error {
@@ -106,29 +94,30 @@ main {
 	font-size: 16px;
 	opacity: 0;
 }
+
 .formulario__grupo-btn-enviar {
-    display: flex;
-    justify-content: center; /* Centra el botón horizontalmente */
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-    margin-top: 15px; /* Espacio arriba del botón */
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 15px;
 }
 
 .formulario__btn-enviar {
-    padding: 10px 10px; /* Ajusta el padding del botón */
-    font-size: 16px; /* Ajusta el tamaño de la fuente del botón */
-    background-color: #007bff; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border: none; /* Elimina el borde del botón */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease; /* Transición suave al cambiar el color de fondo */
+	padding: 10px 10px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .formulario__btn-enviar:hover {
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+	background-color: #0056b3;
 }
 
 
-.formulario__grupo-terminos, 
+.formulario__grupo-terminos,
 .formulario__mensaje,
 .formulario__grupo-btn-enviar {
 	grid-column: span 2;
@@ -166,12 +155,9 @@ main {
 }
 
 .formulario__btn:hover {
-	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+	box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
 }
 
-
-
-/* ----- -----  Estilos para Validacion ----- ----- */
 .formulario__grupo-correcto .formulario__validacion-estado {
 	color: #1ed12d;
 	opacity: 1;
@@ -188,22 +174,4 @@ main {
 
 .formulario__grupo-incorrecto .formulario__input {
 	border: 3px solid #bb2929;
-}
-
-
-/* ----- -----  Mediaqueries ----- ----- */
-@media screen and (max-width: 800px) {
-	.formulario {
-		grid-template-columns: 1fr;
-	}
-
-	.formulario__grupo-terminos, 
-	.formulario__mensaje,
-	.formulario__grupo-btn-enviar {
-		grid-column: 1;
-	}
-
-	.formulario__btn {
-		width: 100%;
-	}
 }
