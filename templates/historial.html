@@ -24,8 +24,12 @@
             <p><strong>ML-PC:</strong> {{ resultado.ml_pc }}</p>
             <p><strong>ML-Pantalla:</strong> {{ resultado.ml_pantalla }}</p>
             <p><strong>Fecha de asignacion del puesto:</strong> {{ resultado.fecha_envio }}</p>
+            <p><strong>Observaciones:</strong> {{ resultado.observaciones }}</p>
+            <p><strong>Observaciones del personal:</strong> {{ resultado.observaciones2 }}</p>
         </div>
-        {% endif %}
+    {% endif %}
+    
+    
         {% if error %}
         <div class="error">
             <p>{{ error }}</p>

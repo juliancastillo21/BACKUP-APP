@@ -748,13 +748,25 @@ def historial():
                 with closing(connect_db5()) as db:
                     cursor = db.cursor()
                     
-                    # Consultar 'cargo', 'ml_pc', y 'ml_pantalla' del médico
-                    cursor.execute("SELECT fecha_envio,cargo, ml_pc, ml_pantalla FROM registro WHERE nombres_completos = ?", (medico,))
+                    # Consultar 'fecha_envio', 'cargo', 'ml_pc', 'ml_pantalla', 'observaciones', y 'observaciones2'
+                    cursor.execute("""
+                        SELECT r.fecha_envio, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2 
+                        FROM registro r
+                        LEFT JOIN solicitar_soporte s ON r.nombres_completos = s.nombres_completos
+                        WHERE r.nombres_completos = ?
+                    """, (medico,))
                     resultado = cursor.fetchone()
                     
                     if resultado:
-                        fecha_envio,cargo, ml_pc, ml_pantalla = resultado
-                        return render_template('historial.html', medico=medico, resultado={'fecha_envio':fecha_envio,'cargo': cargo, 'ml_pc': ml_pc, 'ml_pantalla': ml_pantalla})
+                        fecha_envio, cargo, ml_pc, ml_pantalla, observaciones, observaciones2 = resultado
+                        return render_template('historial.html', medico=medico, resultado={
+                            'fecha_envio': fecha_envio,
+                            'cargo': cargo,
+                            'ml_pc': ml_pc,
+                            'ml_pantalla': ml_pantalla,
+                            'observaciones': observaciones,
+                            'observaciones2': observaciones2
+                        })
                     else:
                         mensaje_error = "No se encontró el historial del equipo para el médico ingresado."
                         return render_template('historial.html', error=mensaje_error)
@@ -763,6 +775,7 @@ def historial():
         
         return render_template('historial.html')
     return redirect(url_for('login'))
+
 
 # Ruta para actualizar un registro en la base de datos+
 @app.route('/update5', methods=['POST'])
