@@ -7,6 +7,7 @@
     <title>Historial del Equipo Asignado</title>
 </head>
 <body>
+
     <div class="container">
         <h2>Buscar Historial del Equipo</h2>
         <form method="post">
@@ -22,6 +23,7 @@
             <p><strong>Cargo:</strong> {{ resultado.cargo }}</p>
             <p><strong>ML-PC:</strong> {{ resultado.ml_pc }}</p>
             <p><strong>ML-Pantalla:</strong> {{ resultado.ml_pantalla }}</p>
+            <p><strong>Fecha de asignacion del puesto:</strong> {{ resultado.fecha_envio }}</p>
         </div>
         {% endif %}
         {% if error %}

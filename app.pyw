@@ -301,13 +301,11 @@ def exportar_a_excel4():
 
 # -------------------FINALIZA FORMULARIO DE REGISTRO DE ACTIVOS------------------------------------
 
-# ---------------------INICIA FORMULARIO DE SOPORTE-----------------------------------
-
-# The above code is a Python Flask application that defines two routes:
+# ---------------------INICIA FORMULARIO DE REGISTRO-----------------------------------
 
 @app.route('/formulario3', methods=['POST'])
 def procesar_formulario3():
-    nombre_medico = request.form.get('nombre_medico')
+    nombres_completos = request.form.get('nombres_completos')  # Cambio en el nombre del campo
     tipo_de_inconveniente = request.form.get('tipo_de_inconveniente')
     numero_de_cubiculo = request.form.get('numero_de_cubiculo')
     observaciones = request.form.get('observaciones')
@@ -315,9 +313,10 @@ def procesar_formulario3():
     estado_de_solicitud = 'en gestion'
 
     # Insertar los datos en la base de datos
-    conn = sqlite3.connect('soporte.db')
+    conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
     c = conn.cursor()
-    c.execute("INSERT INTO solicitar_soporte (nombre_medico, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio,estado_de_solicitud) VALUES (?, ?, ?,?,?,?)", (nombre_medico, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud))
+    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud) VALUES (?, ?, ?, ?, ?, ?)", 
+              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud))
     conn.commit()
     conn.close()
 
@@ -333,13 +332,15 @@ def actualizar_estado2(fecha_envio):
     query = "UPDATE solicitar_soporte SET estado_de_solicitud=?, observaciones2=? WHERE fecha_envio=?"
 
     # Ejecutar la consulta SQL
-    conn = sqlite3.connect('soporte.db')
+    conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
     cursor = conn.cursor()
     cursor.execute(query, (estado_de_solicitud, observaciones2, fecha_envio))
     conn.commit()
     conn.close()
 
     return redirect(url_for('estado_solicitud1')) 
+
+
 
 
 
@@ -631,7 +632,7 @@ def completar1(id):
 
 @app.route('/estado_solicitud')
 def estado_solicitud1():
-    conn = sqlite3.connect('soporte.db')
+    conn = sqlite3.connect('registro.db')
     c = conn.cursor()
     c.execute("SELECT * FROM solicitar_soporte ORDER BY fecha_envio DESC")
     rows = c.fetchall()
@@ -748,12 +749,12 @@ def historial():
                     cursor = db.cursor()
                     
                     # Consultar 'cargo', 'ml_pc', y 'ml_pantalla' del médico
-                    cursor.execute("SELECT cargo, ml_pc, ml_pantalla FROM registro WHERE nombres_completos = ?", (medico,))
+                    cursor.execute("SELECT fecha_envio,cargo, ml_pc, ml_pantalla FROM registro WHERE nombres_completos = ?", (medico,))
                     resultado = cursor.fetchone()
                     
                     if resultado:
-                        cargo, ml_pc, ml_pantalla = resultado
-                        return render_template('historial.html', medico=medico, resultado={'cargo': cargo, 'ml_pc': ml_pc, 'ml_pantalla': ml_pantalla})
+                        fecha_envio,cargo, ml_pc, ml_pantalla = resultado
+                        return render_template('historial.html', medico=medico, resultado={'fecha_envio':fecha_envio,'cargo': cargo, 'ml_pc': ml_pc, 'ml_pantalla': ml_pantalla})
                     else:
                         mensaje_error = "No se encontró el historial del equipo para el médico ingresado."
                         return render_template('historial.html', error=mensaje_error)
