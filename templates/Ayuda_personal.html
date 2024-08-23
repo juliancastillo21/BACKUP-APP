@@ -27,7 +27,7 @@
                             <legend style="color: #28289D;">Información del Solicitante</legend>
                             <div class="mb-3">
                                 <label for="nombres_completos" class="form-label">Nombre del Médico</label>
-                                <input type="text" class="form-control" id="nombres_completos" name="nombres_completos" required>
+                                <input type="text" class="form-control" id="nombres_completos" name="nombres_completos" required oninput="toUpperCaseInput(event)">
                             </div>
                             <div class="mb-3">
                                 <label for="numero_de_cubiculo" class="form-label">Número de Cubículo</label>
@@ -78,6 +78,9 @@
                 alert('Por favor, seleccione un tipo de inconveniente.');
             }
         });
+        function toUpperCaseInput(event) {
+            event.target.value = event.target.value.toUpperCase();
+        }
     </script>
 </body>
 </html>
