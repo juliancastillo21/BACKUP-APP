@@ -16,13 +16,13 @@
 <body class="sb-nav-fixed">
     <!-- Layout -->
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+        <div id="layoutSidenav_nav" class="d-none d-md-block">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <!-- Logo -->
                         <div class="navbar-brand">
-                            <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor">
+                            <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor" class="img-fluid">
                         </div>
                         <!-- Menú de navegación -->
                         <a class="nav-link" href="/Ayuda">
@@ -41,8 +41,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
                             Calculadora IMC
                         </a>
-                        <a class="nav-link"
-                            href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u">
+                        <a class="nav-link" href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u">
                             <div class="sb-nav-link-icon"><i class="fas fa-exclamation-triangle"></i></div>
                             Condiciones Inseguras
                         </a>
@@ -62,33 +61,15 @@
                 </div>
             </nav>
         </div>
+
         <div id="layoutSidenav_content">
             <main>
-                <div class="container">
-                    <h1>Bienvenido</h1>
-                    <div class="image-grid">
-                        <div class="image-item">
-                            <img src="../static/imagenes/Olimpiadas.jpeg" alt="Olimpiadas">
-                            <div class="image-caption">
-                                <h5>Olimpiadas</h5>
-                                <p>Participa en nuestras olimpiadas anuales</p>
-                            </div>
-                        </div>
-                        <div class="image-item">
-                            <img src="../static/imagenes/Aviso.jpeg" alt="Aviso">
-                            <div class="image-caption">
-                                <h5>Aviso Importante</h5>
-                                <p>Mantente informado sobre nuestros últimos avisos</p>
-                            </div>
-                        </div>
-                        <div class="image-item">
-                            <img src="../static/imagenes/Cafe.jpeg" alt="Cafe">
-                            <div class="image-caption">
-                                <h5>Café de la Mañana</h5>
-                                <p>Disfruta de nuestro café en las instalaciones</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container-fluid d-flex justify-content-center">
+                    <!-- Incluir el archivo de políticas de seguridad -->
+                    <iframe src="{{ url_for('static', filename='Boletín junio 2024-Agosto. (2).pdf') }}" 
+                        class="w-100" 
+                        style="max-width: 1200px; height: 800px;" 
+                        frameborder="0"></iframe>
                 </div>
             </main>
         </div>
@@ -159,5 +140,4 @@
     });
 </script>
 </body>
-
 </html>

@@ -7,6 +7,15 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto asegura que el contenedor ocupe la altura completa de la ventana */
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
 }
 
 /* Estilos para la cuadrícula de imágenes */
