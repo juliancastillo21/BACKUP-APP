@@ -748,25 +748,21 @@ def historial():
                 with closing(connect_db5()) as db:
                     cursor = db.cursor()
                     
-                    # Consultar 'fecha_envio', 'cargo', 'ml_pc', 'ml_pantalla', 'observaciones', y 'observaciones2'
+                    # Consultar todas las peticiones del médico
                     cursor.execute("""
-                        SELECT r.fecha_envio, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2 
+                        SELECT r.nombres_completos, r.fecha_envio, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2 
                         FROM registro r
                         LEFT JOIN solicitar_soporte s ON r.nombres_completos = s.nombres_completos
                         WHERE r.nombres_completos = ?
+                        ORDER BY r.fecha_envio DESC
                     """, (medico,))
-                    resultado = cursor.fetchone()
+                    resultados = cursor.fetchall()
                     
-                    if resultado:
-                        fecha_envio, cargo, ml_pc, ml_pantalla, observaciones, observaciones2 = resultado
-                        return render_template('historial.html', medico=medico, resultado={
-                            'fecha_envio': fecha_envio,
-                            'cargo': cargo,
-                            'ml_pc': ml_pc,
-                            'ml_pantalla': ml_pantalla,
-                            'observaciones': observaciones,
-                            'observaciones2': observaciones2
-                        })
+                    # Imprimir los resultados para depuración
+                    print("Resultados obtenidos:", resultados)
+                    
+                    if resultados:
+                        return render_template('historial.html', medico=medico, resultados=resultados)
                     else:
                         mensaje_error = "No se encontró el historial del equipo para el médico ingresado."
                         return render_template('historial.html', error=mensaje_error)
