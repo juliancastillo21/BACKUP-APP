@@ -748,13 +748,13 @@ def historial():
                 with closing(connect_db5()) as db:
                     cursor = db.cursor()
                     
-                    # Consultar todas las peticiones del médico
+                    # Consultar todas las peticiones del médico incluyendo la fecha de envío de la petición
                     cursor.execute("""
-                        SELECT r.nombres_completos, r.fecha_envio, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2 
+                        SELECT r.nombres_completos, r.fecha_envio AS fecha_asignacion, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2, s.fecha_envio AS fecha_peticion
                         FROM registro r
                         LEFT JOIN solicitar_soporte s ON r.nombres_completos = s.nombres_completos
                         WHERE r.nombres_completos = ?
-                        ORDER BY r.fecha_envio DESC
+                        ORDER BY s.fecha_envio DESC
                     """, (medico,))
                     resultados = cursor.fetchall()
                     
