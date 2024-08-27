@@ -743,7 +743,7 @@ def inventario():
 def historial():
     if 'username' in session and session['role'] == 'administrativo':
         if request.method == 'POST':
-            medico = request.form.get('medico')
+            medico = request.form.get('medico').strip().upper()  # Convertir a mayúsculas y eliminar espacios adicionales
             try:
                 with closing(connect_db5()) as db:
                     cursor = db.cursor()
@@ -752,8 +752,8 @@ def historial():
                     cursor.execute("""
                         SELECT r.nombres_completos, r.fecha_envio AS fecha_asignacion, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2, s.fecha_envio AS fecha_peticion
                         FROM registro r
-                        LEFT JOIN solicitar_soporte s ON r.nombres_completos = s.nombres_completos
-                        WHERE r.nombres_completos = ?
+                        LEFT JOIN solicitar_soporte s ON UPPER(r.nombres_completos) = UPPER(s.nombres_completos)
+                        WHERE UPPER(r.nombres_completos) = ?
                         ORDER BY s.fecha_envio DESC
                     """, (medico,))
                     resultados = cursor.fetchall()
@@ -764,7 +764,7 @@ def historial():
                     if resultados:
                         return render_template('historial.html', medico=medico, resultados=resultados)
                     else:
-                        mensaje_error = "No se encontró el historial del equipo para el médico ingresado,intente escribiendo el nomre completo."
+                        mensaje_error = "No se encontró el historial del equipo para el médico ingresado, intente escribiendo el nombre completo."
                         return render_template('historial.html', error=mensaje_error)
             except sqlite3.DatabaseError as e:
                 return f"Error de base de datos: {e}", 500
