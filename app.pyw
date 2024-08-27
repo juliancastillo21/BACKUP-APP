@@ -764,7 +764,7 @@ def historial():
                     if resultados:
                         return render_template('historial.html', medico=medico, resultados=resultados)
                     else:
-                        mensaje_error = "No se encontró el historial del equipo para el médico ingresado."
+                        mensaje_error = "No se encontró el historial del equipo para el médico ingresado,intente escribiendo el nomre completo."
                         return render_template('historial.html', error=mensaje_error)
             except sqlite3.DatabaseError as e:
                 return f"Error de base de datos: {e}", 500
