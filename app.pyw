@@ -207,14 +207,14 @@ def obtener_contadores(medico_quien_atiende):
 
 @app.route('/exportar_a_excel3')
 def exportar_a_excel3():
-    # Conectar a la base de datos y obtener los datos
-    with sqlite3.connect('usuarios.db') as conn:
-        df = pd.read_sql_query("SELECT * FROM pacientes", conn)
+    # Conectar a la base de datos 'registro' y obtener los datos de la tabla 'solicitud_soporte'
+    with sqlite3.connect('registro.db') as conn:
+        df = pd.read_sql_query("SELECT * FROM solicitar_soporte", conn)
 
     # Crear un archivo Excel en memoria
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name='pacientes')
+    df.to_excel(writer, index=False, sheet_name='solicitar_soporte')
     writer._save()
 
     # Asegurarse de que el archivo Excel se cierre correctamente
@@ -222,7 +222,7 @@ def exportar_a_excel3():
 
     # Crear un objeto de respuesta Flask que envía el archivo Excel
     output.seek(0)
-    return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='registro de ateciones.xlsx')
+    return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='solicitar_soporte.xlsx')
 
 # ---------------------FINALIZA REGISTRO DE PACIENTES-----------------------------
 
