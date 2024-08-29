@@ -8,3 +8,4 @@
  pip install pandas
 pip install flask_sqlalchemy
 pip install Flask
+pip install xlsxwriter
