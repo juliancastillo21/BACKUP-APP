@@ -38,7 +38,7 @@
                             <legend style="color: #28289D;">Detalles del Inconveniente</legend>
                             <div class="mb-3">
                                 <label for="tipo_de_inconveniente" class="form-label">Tipo de Inconveniente</label>
-                                <select class="form-select" id="tipo_de_inconveniente" name="tipo_de_inconveniente" required>
+                                <select class="form-select" id="tipo_de_inconveniente" name="tipo_de_inconveniente" required onchange="toggleSerialField()">
                                     <option value="">Seleccione una opción</option>
                                     <option value="Problema con Navegador">Problema con Navegador</option>
                                     <option value="Problema con Ipsa">Problema con Ipsa</option>
@@ -47,9 +47,14 @@
                                     <option value="Problema con Microsip">Problema con Microsip</option>
                                     <option value="Problema con la diadema">Problema con la diadema</option>
                                     <option value="Problema con el mouse">Problema con el mouse</option>
-                                    <option value="Problema con la pantalla">Problema con la pantalla</option>
+                                    <option value="Problema con la pantalla">Problema con la pantalla o computador</option>
+                                    
                                     <option value="otro">Otro</option>
                                 </select>
+                            </div>
+                            <div class="mb-3" id="serialField" style="display: none;">
+                                <label for="serial" class="form-label">Serial del equipo</label>
+                                <input type="text" class="form-control" id="serial" name="serial">
                             </div>
                             <div class="mb-3">
                                 <label for="observaciones" class="form-label">Observaciones Adicionales</label>
@@ -78,8 +83,22 @@
                 alert('Por favor, seleccione un tipo de inconveniente.');
             }
         });
+
         function toUpperCaseInput(event) {
             event.target.value = event.target.value.toUpperCase();
+        }
+
+        function toggleSerialField() {
+            var tipo = document.getElementById('tipo_de_inconveniente').value;
+            var serialField = document.getElementById('serialField');
+
+            if (tipo === 'Problema con la pantalla' || tipo === 'Problema con el computador') {
+                serialField.style.display = 'block';
+                document.getElementById('serial').required = true;
+            } else {
+                serialField.style.display = 'none';
+                document.getElementById('serial').required = false;
+            }
         }
     </script>
 </body>

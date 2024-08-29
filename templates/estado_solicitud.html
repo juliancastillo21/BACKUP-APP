@@ -55,13 +55,14 @@
             <tr>
                 <th>nombre medico</th>
                 <th>tipo de inconveniente</th>
+                <th>Serial</th>
                 <th>numero de cubiculo</th>
                 <th>observaciones</th>
                 <th>Fecha de Envío</th>
                 <th>estado de la solicitud</th>
-                <th>observaciones2</th>
-               
+                <th>observaciones2</th>       
                 <th>Actualizar estado</th>
+
                 
             </tr>
             {% for row in rows %}
@@ -73,7 +74,8 @@
                 <td>{{ row[4] }}</td>
                 <td>{{ row[5] }}</td>
                 <td>{{ row[6] }}</td>
-                
+
+
                 <td>
                     <form action="/actualizar_estado2/{{ row[4] }}" method="post">
                         <select name="estado_de_solicitud" class="form-select">

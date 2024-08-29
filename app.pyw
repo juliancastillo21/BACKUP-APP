@@ -309,14 +309,15 @@ def procesar_formulario3():
     tipo_de_inconveniente = request.form.get('tipo_de_inconveniente')
     numero_de_cubiculo = request.form.get('numero_de_cubiculo')
     observaciones = request.form.get('observaciones')
+    serial = request.form.get('serial') 
     fecha_envio = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Obtener la fecha y hora actuales
     estado_de_solicitud = 'en gestion'
 
     # Insertar los datos en la base de datos
     conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
     c = conn.cursor()
-    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud) VALUES (?, ?, ?, ?, ?, ?)", 
-              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud))
+    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud,serial) VALUES (?, ?, ?, ?, ?, ?,?)", 
+              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud,serial))
     conn.commit()
     conn.close()
 
@@ -641,7 +642,7 @@ def estado_solicitud1():
 
 @app.route('/soporte_medicos')
 def soporte_medicos():
-    conn = sqlite3.connect('soporte.db')
+    conn = sqlite3.connect('registro.db')
     c = conn.cursor()
     c.execute("SELECT * FROM solicitar_soporte ORDER BY fecha_envio DESC")
     rows = c.fetchall()
@@ -750,7 +751,7 @@ def historial():
                     
                     # Consultar todas las peticiones del médico incluyendo la fecha de envío de la petición
                     cursor.execute("""
-                        SELECT r.nombres_completos, r.fecha_envio AS fecha_asignacion, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2, s.fecha_envio AS fecha_peticion
+                        SELECT r.nombres_completos, r.fecha_envio AS fecha_asignacion, r.cargo, r.ml_pc, r.ml_pantalla, s.observaciones, s.observaciones2, s.fecha_envio, s.serial, s.tipo_de_inconveniente AS fecha_peticion
                         FROM registro r
                         LEFT JOIN solicitar_soporte s ON UPPER(r.nombres_completos) = UPPER(s.nombres_completos)
                         WHERE UPPER(r.nombres_completos) = ?
