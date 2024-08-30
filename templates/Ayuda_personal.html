@@ -48,7 +48,6 @@
                                     <option value="Problema con el mouse">Problema con el mouse</option>
                                     <option value="Problema con la pantalla">Problema con la pantalla</option>
                                     <option value="Problema con el computador">Problema con el Computador</option>
-                                    
                                     <option value="otro">Otro</option>
                                 </select>
                             </div>
@@ -74,14 +73,50 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Solicitud Enviada</h5>
+                </div>
+                <div class="modal-body">
+                    Tu solicitud ha sido enviada con éxito.
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('helpForm').addEventListener('submit', function(event) {
-            var tipo = document.getElementById('tipo_de_inconveniente');
-            if (tipo.value === '') {
-                event.preventDefault();
-                alert('Por favor, seleccione un tipo de inconveniente.');
-            }
+            // Permitir el envío del formulario
+            event.preventDefault();
+
+            // Obtener los datos del formulario
+            var formData = new FormData(this);
+
+            // Enviar el formulario de forma manual
+            fetch(this.action, {
+                method: this.method,
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    // Mostrar la ventana modal
+                    var modal = new bootstrap.Modal(document.getElementById('successModal'));
+                    modal.show();
+
+                    // Ocultar la ventana modal después de 3 segundos y redirigir
+                    setTimeout(function() {
+                        modal.hide();
+                        window.location.href = '/index'; // Redirige a la página de inicio
+                    }, 3000);
+                } else {
+                    alert("Hubo un error al enviar la solicitud.");
+                }
+            }).catch(error => {
+                alert("Hubo un error al enviar la solicitud.");
+            });
         });
 
         function toUpperCaseInput(event) {
