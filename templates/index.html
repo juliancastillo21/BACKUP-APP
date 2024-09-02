@@ -9,135 +9,123 @@
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="js/app.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
-    <!-- Layout -->
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav" class="d-none d-md-block">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <!-- Logo -->
-                        <div class="navbar-brand">
-                            <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor" class="img-fluid">
-                        </div>
-                        <!-- Menú de navegación -->
-                        <a class="nav-link" href="/Ayuda">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-md"></i></div>
-                            ¿Necesitas ayuda?
-                        </a>
-                        <a class="nav-link" href="/registro">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
-                            Registrar pacientes
-                        </a>
-                        <a class="nav-link" href="/form">
-                            <div class="sb-nav-link-icon"><i class="fas fa-laptop-medical"></i></div>
-                            Entrega de equipos
-                        </a>
-                        <a class="nav-link" href="/Calculadora">
-                            <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
-                            Calculadora IMC
-                        </a>
-                        <a class="nav-link" href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u">
-                            <div class="sb-nav-link-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                            Condiciones Inseguras
-                        </a>
-                        <a class="nav-link" href="/manualmedicos">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                            Manual
-                        </a>
-                        <a class="nav-link" href="/reglamento">
-                            <div class="sb-nav-link-icon"><i class="fas fa-gavel"></i></div>
-                            Reglamento Interno de Trabajo
-                        </a>
-                        <a class="nav-link" href="/logout">
-                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                            Salir
-                        </a>
-                    </div>
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark">
+            <div class="sb-sidenav-menu">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <img src="/static/imagenes/hola doctor logo.jpg" alt="hola doctor" class="img-fluid">
                 </div>
-            </nav>
-        </div>
+                    <ul class="nav">
+                        <li>
+                            <a class="nav-link" href="#soporteSubmenu" data-bs-toggle="collapse" ><i class="fas fa-headset"></i> Soporte <i class="fas fa-chevron-down ms-auto"></i></a>
+                            <ul class="collapse" id="soporteSubmenu">
+                                <li><a class="nav-link" href="/Ayuda"><i class="fas fa-question-circle"></i> ¿Necesitas ayuda?</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-user-plus"></i> Registrar pacientes</a></li>
+                            </ul>
+                        </li>
+                       
+                        <li>
+                            <a  class="nav-link" href="#calidadSubmenu" data-bs-toggle="collapse"><i class="fas fa-chart-line"></i> Calidad <i class="fas fa-chevron-down ms-auto"></i></a>
+                            <ul class="collapse" id="calidadSubmenu">
+                                <li><a class="nav-link" href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u"><i class="fas fa-exclamation-triangle"></i> Condiciones Inseguras</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-clipboard-check"></i> Auditoria</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-shield-alt"></i> Seguridad</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-file-contract"></i> Políticas</a></li>
+                                <li><a class="nav-link" href="/plantilla_mantenimiento"><i class="fas fa-tools"></i> Mantenimiento locativo</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#especialidadesSubmenu" data-bs-toggle="collapse"><i class="fas fa-stethoscope"></i> Especialidades Médicas <i class="fas fa-chevron-down ms-auto"></i></a>
+                            <ul class="collapse" id="especialidadesSubmenu">
+                                <li><a class="nav-link" href="/Calculadora"><i class="fas fa-calculator"></i> Calculadora IMC</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-user-md"></i> Medicina General</a></li>
+                                <li><a class="nav-link" href="/registro"><i class="fas fa-brain"></i> Psicología</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/reglamento"><i class="fas fa-file-alt"></i> Reglamento de Higiene y Seguridad</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/manualmedicos"><i class="fas fa-book"></i> Manual</a></li>
+                        <li>
+                            <a class="nav-link" href="/Intranet"><i class="fas fa-network-wired"></i> Intranet</a></li>
+                        <li>
+                            <a class="nav-link" href="/reglamento"><i class="fas fa-gavel"></i> Reglamento Interno de Trabajo</a></li>
+                        <li>
+                            <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        
 
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid d-flex justify-content-center">
                     <!-- Incluir el archivo de políticas de seguridad -->
                     <iframe src="{{ url_for('static', filename='Boletín junio 2024-Agosto. (2).pdf') }}" 
-                        class="w-100" 
-                        style="max-width: 1200px; height: 800px;" 
-                        frameborder="0"></iframe>
+                            class="w-100" 
+                            style="max-width: 1200px; height: 800px;" 
+                            frameborder="0"></iframe>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Script para cálculo de IMC -->
+    <!-- Script para carga dinámica de contenido -->
     <script>
-        function calcularIMC() {
-            const peso = document.getElementById('peso').value;
-            const altura = document.getElementById('altura').value;
+        document.addEventListener('DOMContentLoaded', () => {
+            const collapsedItems = JSON.parse(localStorage.getItem('collapsedItems')) || {};
 
-            if (peso && altura) {
-                const imc = peso / (altura * altura);
-                let estado = '';
+            // Apply saved states to menu items
+            document.querySelectorAll('.nav-link.collapsed').forEach(link => {
+                const target = link.getAttribute('href');
+                const collapseElement = document.querySelector(target);
 
-                if (imc < 18.5) {
-                    estado = 'Bajo peso';
-                } else if (imc >= 18.6 && imc < 24.9) {
-                    estado = 'SALUDABLE';
-                } else if (imc >= 25 && imc < 29.9) {
-                    estado = 'CON SOBREPESO';
-                } else if (imc >= 30 && imc < 39.9) {
-                    estado = 'CON OBESIDAD';
+                if (collapsedItems[target] === true) {
+                    collapseElement.classList.add('show');
                 } else {
-                    estado = 'OBESIDAD EXTREMA DE ALTO RIESGO';
+                    collapseElement.classList.remove('show');
                 }
 
-                // Mostrar el resultado en un modal
-                const modal = Swal.fire({
-                    title: 'Índice de Masa Corporal (IMC)',
-                    html: `Su IMC es: <strong>${imc.toFixed(2)}</strong><br>Estado: <strong>${estado}</strong>`,
-                    icon: 'info',
-                    confirmButtonText: 'Aceptar'
+                link.addEventListener('click', function () {
+                    if (collapseElement.classList.contains('show')) {
+                        collapseElement.classList.remove('show');
+                        collapsedItems[target] = false;
+                    } else {
+                        document.querySelectorAll('.collapse.show').forEach(open => open.classList.remove('show'));
+                        collapseElement.classList.add('show');
+                        collapsedItems[target] = true;
+                    }
+                    localStorage.setItem('collapsedItems', JSON.stringify(collapsedItems));
                 });
+            });
+        });
+    </script>
 
-                // Limpiar los campos al cerrar el modal
-                modal.then((result) => {
-                    document.getElementById('peso').value = '';
-                    document.getElementById('altura').value = '';
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Por favor, ingrese su peso y altura.',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
+    <!-- Scripts de Bootstrap y SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+            // Toggle the side navigation
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
                 });
             }
-        }
+        });
     </script>
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-<script>
-    window.addEventListener('DOMContentLoaded', event => {
-        // Toggle the side navigation
-        const sidebarToggle = document.body.querySelector('#sidebarToggle');
-        if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', event => {
-                event.preventDefault();
-                document.body.classList.toggle('sb-sidenav-toggled');
-                localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-            });
-        }
-    });
-</script>
 </body>
 </html>

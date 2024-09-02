@@ -112,6 +112,8 @@ iframe {
 
 .nav-link {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: #ffffff !important;
     padding: 12px 15px;
     margin-bottom: 5px;
@@ -123,6 +125,10 @@ iframe {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateX(5px);
     color: #4edfe4;
+}
+
+.nav-link[aria-expanded="true"] i.fa-chevron-down {
+    transform: rotate(-180deg);
 }
 
 .sb-nav-link-icon {
@@ -149,4 +155,24 @@ iframe {
     flex-grow: 1;
     padding-left: 225px;
     padding-top: 20px;
+}
+/* Agrega estos estilos a tu archivo CSS */
+#layoutSidenav {
+    display: flex;
+    height: 100vh;
+}
+
+#layoutSidenav_nav {
+    position: fixed;
+    width: 250px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#layoutSidenav_content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
 }

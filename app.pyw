@@ -85,14 +85,18 @@ def change_password():
     return redirect(url_for('login'))
 
 # Ruta para el panel de control de los médicos
+@app.route('/manualmedicos')
+def manualmedicos():
+    return render_template('manualmedicos.html')
+
+@app.route('/Intranet')
+def intranet():
+    return render_template('intranet.html')
+
 @app.route('/index')
 def index():
 
     return render_template('index.html')
-
-@app.route('/manualmedicos')
-def manualmedicos():
-    return render_template('manualmedicos.html')
 
 @app.route('/reglamento')
 def reglamento():
