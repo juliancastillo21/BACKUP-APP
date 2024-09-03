@@ -734,15 +734,56 @@ registro = 'registro.db'
 def connect_db5():
     return sqlite3.connect(registro)
 
+
+
 @app.route('/inventario')
 def inventario():
     with closing(connect_db5()) as db:
         cursor = db.cursor()
         cursor.execute("SELECT * FROM registro")
         asignacionesinventario = cursor.fetchall()
-        cursor.execute("SELECT numero_puesto FROM registro")
-        inventario_info = cursor.fetchall()
-    return render_template('inventario.html', asignacionesinventario=asignacionesinventario, inventario_info=inventario_info)
+        
+        # Calcular los totales
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pc != '' AND ml_pc IS NOT NULL")
+        total_ml_pc = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pantalla != '' AND ml_pantalla IS NOT NULL")
+        total_ml_pantalla = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE diadema != '' AND diadema IS NOT NULL")
+        total_diadema = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE mause != '' AND mause IS NOT NULL")
+        total_mause = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE guaya != '' AND guaya IS NOT NULL")
+        total_guaya = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE extension != '' AND extension IS NOT NULL")
+        total_extension = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE descansapies != '' AND descansapies IS NOT NULL")
+        total_descansapies = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE silla != '' AND silla IS NOT NULL")
+        total_silla = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE estado = 'ACTIVO'")
+        total_activo = cursor.fetchone()[0]
+        
+        
+    totales = {
+        'total_ml_pc': total_ml_pc,
+        'total_ml_pantalla': total_ml_pantalla,
+        'total_diadema': total_diadema,
+        'total_mause': total_mause,
+        'total_guaya': total_guaya,
+        'total_extension': total_extension,
+        'total_descansapies': total_descansapies,
+        'total_silla': total_silla,
+        'total_activo': total_activo,
+    }
+    return render_template('inventario.html', asignacionesinventario=asignacionesinventario, totales=totales)
 
 @app.route('/historial', methods=['GET', 'POST'])
 def historial():
