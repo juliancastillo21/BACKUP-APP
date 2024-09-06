@@ -2,290 +2,315 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONTROL DE PERSONAL</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal.css') }}">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script><title>Datos del Día</title>
-    <style>
-        .navbar {
-            background-color: #28289D !important;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #28289D;
-            color: #FFFFFF;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tbody tr:hover {
-            background-color: #ddd;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/inventario.css">
 </head>
 <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <img src="/static/imagenes/logo2.png" alt="Logo" class="navbar-brand">
-                <a href="{{ url_for('exportar_a_excel4') }}" class="navbar-brand">Descargar</a>
-                <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-users-cog me-2"></i>CONTROL DE PERSONAL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('exportar_a_excel4') }}"><i class="fas fa-file-excel me-1"></i>Descargar Excel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin"><i class="fas fa-home me-1"></i>Inicio</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    <main>
+        </div>
+    </nav>
 
-        <div class="container tabla_totales">
-            <table id="miTabla" class="table table-striped table-bordered">
+    <div class="container mt-4">
+        <div class="summary-card">
+            <h3><i class="fas fa-chart-pie me-2"></i>Resumen de Inventario</h3>
+            <div class="row">
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-desktop"></i>
+                        <span>Total ML-PC:</span>
+                        <strong>{{ totales.total_ml_pc }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-tv"></i>
+                        <span>Total ML-Pantalla:</span>
+                        <strong>{{ totales.total_ml_pantalla }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-headset"></i>
+                        <span>Total Diadema:</span>
+                        <strong>{{ totales.total_diadema }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-mouse"></i>
+                        <span>Total Mouse:</span>
+                        <strong>{{ totales.total_mause }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-link"></i>
+                        <span>Total Guaya:</span>
+                        <strong>{{ totales.total_guaya }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Total Extensión:</span>
+                        <strong>{{ totales.total_extension }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-shoe-prints"></i>
+                        <span>Total Descansapies:</span>
+                        <strong>{{ totales.total_descansapies }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-chair"></i>
+                        <span>Total Sillas:</span>
+                        <strong>{{ totales.total_silla }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-user"></i>
+                        <span>Total Número Puesto:</span>
+                        <strong>{{ totales.total_activo }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2><i class="fas fa-clipboard-list me-2"></i>Inventario Físico</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Total ML-PC</th>
-                        <th>Total ML-Pantalla</th>
-                        <th>Total Diadema</th>
-                        <th>Total Mause</th>
-                        <th>Total Guaya</th>
-                        <th>Total Extencion</th>
-                        <th>Total Descansapues</th>
-                        <th>Total Sillas</th>
-                        <th>Total Numero Puesto</th>
+                        <th>NOMBRES</th>
+                        <th>CÉDULA</th>
+                        <th>CARGO</th>
+                        <th>PUESTO</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for asignacioninventario in asignacionesinventario %}
                     <tr>
-                        <td>{{ totales.total_ml_pc }}</td>
-                        <td>{{ totales.total_ml_pantalla }}</td>
-                        <td>{{ totales.total_diadema }}</td>
-                        <td>{{ totales.total_mause }}</td>
-                        <td>{{ totales.total_guaya }}</td>
-                        <td>{{ totales.total_extension }}</td>
-                        <td>{{ totales.total_descansapies }}</td>
-                        <td>{{ totales.total_silla }}</td>
-                        <td>{{ totales.total_activo }}</td>
+                        <td>{{ asignacioninventario[0] }}</td>
+                        <td>{{ asignacioninventario[1] }}</td>
+                        <td>{{ asignacioninventario[2] }}</td>
+                        <td>{{ asignacioninventario[3] }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#miModal{{ asignacioninventario[3] }}">
+                                <i class="fas fa-edit me-1"></i>Editar
+                            </button>
+                        </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
-            
+            </table>
+        </div>
+    </div>
 
-        
-                    <h1>inventario fisico</h1>
-                    <div class="table">
-                        <table id="miTabla" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>NOMBRES COMPLETOS</th>
-                                    <th>NUMERO CEDULA</th>
-                                    <th>CARGO</th>
-                                    <th>PUESTO</th>
-                                    <th>NUMERO CELULAR</th>
-                                    <th>ML-PC</th>
-                                    <th>ML-PANTALLA</th>
-                                    <th>MOUSE</th>
-                                    <th>GUAYA</th>
-                                    <th>CARGADOR</th>
-                                    <th>DIADEMA</th>
-                                    <th>FECHA DE ENVIO</th>
-                                    <th>SILLA</th>
-                                    <th>CUBICULO</th>
-                                    <th>DESCAN SAPIES</th>
-                                    <th>OBSERVA CIONES</th>
-                                    <th>Estado</th>
-                                    <th>teclado</th>
-                                    <th>base</th>
-                                    <th>sector</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for asignacioninventario in asignacionesinventario %}
-                                <tr>
-                                    <td>{{ asignacioninventario[0] }}</td>
-                                    <td>{{ asignacioninventario[1] }}</td>
-                                    <td>{{ asignacioninventario[2] }}</td>
-                                    <td>{{ asignacioninventario[3] }}</td>
-                                    <td>{{ asignacioninventario[4] }}</td>
-                                    <td>{{ asignacioninventario[5] }}</td>
-                                    <td>{{ asignacioninventario[6] }}</td>
-                                    <td>{{ asignacioninventario[7] }}</td>
-                                    <td>{{ asignacioninventario[8] }}</td>
-                                    <td>{{ asignacioninventario[9] }}</td>
-                                    <td>{{ asignacioninventario[10] }}</td>
-                                    <td>{{ asignacioninventario[11] }}</td>
-                                    <td>{{ asignacioninventario[12] }}</td>
-                                    <td>{{ asignacioninventario[13] }}</td>
-                                    <td>{{ asignacioninventario[14] }}</td>
-                                    <td>{{ asignacioninventario[15] }}</td>
-                                    <td>{{ asignacioninventario[16] }}</td>
-                                    <td>{{ asignacioninventario[17] }}</td>
-                                    <td>{{ asignacioninventario[18] }}</td>
-                                    <td>{{ asignacioninventario[19] }}</td>
-                                    
-                                    <!-- Botón para abrir el modal -->
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal{{ asignacioninventario[3] }}" style="background-color: #3d3df6;">
-                                            Actualizar
-                                        </button>
-                                    </td>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="miModal{{ asignacioninventario[3] }}" tabindex="-1" role="dialog" aria-labelledby="miModalLabel{{ asignacioninventario[3] }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="miModalLabel{{ asignacioninventario[3] }}">Actualizar {{ asignacioninventario[3] }}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Aquí va el formulario para actualizar los datos -->
-                                                    <form id="formActualizar" method="post" action="/update5">
-                                                        <input type="hidden" name="numero_puesto" value="{{ asignacioninventario[3] }}">
-                                                        <div class="form-group">
-                                                            <label for="nombres_completos">NOMBRES COMPLETOS</label>
-                                                            <input type="text" class="form-control" id="nombres_completos" name="nombres_completos" value="{{ asignacioninventario[0] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="cedula">NUMERO DE CEDULA</label>
-                                                            <input type="text" class="form-control" id="cedula" name="cedula" value="{{ asignacioninventario[1] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="cargo">CARGO</label>
-                                                            <input type="text" class="form-control" id="cargo" name="cargo" value="{{ asignacioninventario[2] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="extension">NUMERO CELULAR</label>
-                                                            <input type="text" class="form-control" id="extension" name="extension" value="{{ asignacioninventario[4] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="ml_pc">ML-PC</label>
-                                                            <input type="text" class="form-control" id="ml_pc" name="ml_pc" value="{{ asignacioninventario[5] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="ml_pantalla">ML-PANTALLA</label>
-                                                            <input type="text" class="form-control" id="ml_pantalla" name="ml_pantalla" value="{{ asignacioninventario[6] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="mause">MOUSE</label>
-                                                            <input type="checkbox" id="mause" name="mause" {{ "checked" if asignacioninventario[7] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="guaya">GUAYA</label>
-                                                            <input type="checkbox" id="guaya" name="guaya" {{ "checked" if asignacioninventario[8] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="cargador">CARGADOR</label>
-                                                            <input type="checkbox" id="cargador" name="cargador" {{ "checked" if asignacioninventario[9] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="diadema">DIADEMA</label>
-                                                            <input type="checkbox" id="diadema" name="diadema" {{ "checked" if asignacioninventario[10] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="silla">SILLA</label>
-                                                            <input type="checkbox" id="silla" name="silla" {{ "checked" if asignacioninventario[12] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="cubiculo">CUBICULO</label>
-                                                            <input type="checkbox" id="cubiculo" name="cubiculo" {{ "checked" if asignacioninventario[13] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="descansapies">DESCANSAPIES</label>
-                                                            <input type="checkbox" id="descansapies" name="descansapies" {{ "checked" if asignacioninventario[14] == "Sí" else "" }}>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="estado">Estado</label>
-                                                            <select type="text" class="form-control" id="estado" name="estado" value="{{ asignacioninventario[16] }}">
-                                                                <option value="0">Seleccione una opcion</option>
-                                                                <option value="ACTIVO">ACTIVO</option>
-                                                                <option value="INACTIVO">INACTIVO</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="observaciones">OBSERVACIONES</label>
-                                                            <input type="text" class="form-control" id="observaciones" name="observaciones" value="{{ asignacioninventario[15] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="teclado">TECLADO</label>
-                                                            <input type="text" class="form-control" id="teclado" name="teclado" value="{{ asignacioninventario[17] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="base">BASE</label>
-                                                            <input type="text" class="form-control" id="base" name="base" value="{{ asignacioninventario[18] }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="sector">SECTOR</label>
-                                                            <input type="text" class="form-control" id="sector" name="sector" value="{{ asignacioninventario[19] }}">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Guardar cambios</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
- 
-        <script>
-            function abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto,estado) {
-                document.getElementById('idActualizar').value = id;
-                document.getElementById('nombres_completos').value = nombres_completos;
-                document.getElementById('cedula').value = cedula;
-                document.getElementById('cargo').value = cargo;
-                document.getElementById('extension').value = extension;
-                document.getElementById('ml_pc').value = ml_pc;
-                document.getElementById('ml_pantalla').value = ml_pantalla;
-                document.getElementById('observaciones').value = observaciones;
-                document.getElementById('estado').value = estado;
-                // Actualiza los estados de los checkboxes
-                document.getElementById('mause').checked = mause === 'Sí';
-                document.getElementById('guaya').checked = guaya === 'Sí';
-                document.getElementById('cargador').checked = cargador === 'Sí';
-                document.getElementById('diadema').checked = diadema === 'Sí';
-                document.getElementById('silla').checked = silla === 'Sí';
-                document.getElementById('cubiculo').checked = cubiculo === 'Sí';
-                document.getElementById('descansapies').checked = descansapies === 'Sí';
-                // Abre el modal
-                $('#miModal').modal('show');
-            }
+    <!-- Modal structure (repeated for each row) -->
+    {% for asignacioninventario in asignacionesinventario %}
+    <div class="modal fade" id="miModal{{ asignacioninventario[3] }}" tabindex="-1" aria-labelledby="miModalLabel{{ asignacioninventario[3] }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="miModalLabel{{ asignacioninventario[3] }}">
+                        <i class="fas fa-user-edit me-2"></i>Actualizar {{ asignacioninventario[3] }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formActualizar{{ asignacioninventario[3] }}" method="post" action="/update5">
+                        <input type="hidden" name="numero_puesto" value="{{ asignacioninventario[3] }}">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombres_completos" class="form-label">NOMBRES COMPLETOS</label>
+                                <input type="text" class="form-control" id="nombres_completos{{ asignacioninventario[3] }}" name="nombres_completos" value="{{ asignacioninventario[0] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cedula" class="form-label">NÚMERO DE CÉDULA</label>
+                                <input type="text" class="form-control" id="cedula{{ asignacioninventario[3] }}" name="cedula" value="{{ asignacioninventario[1] }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="cargo" class="form-label">CARGO</label>
+                                <input type="text" class="form-control" id="cargo{{ asignacioninventario[3] }}" name="cargo" value="{{ asignacioninventario[2] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="extension" class="form-label">NÚMERO CELULAR</label>
+                                <input type="text" class="form-control" id="extension{{ asignacioninventario[3] }}" name="extension" value="{{ asignacioninventario[4] }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="ml_pc" class="form-label">ML-PC</label>
+                                <input type="text" class="form-control" id="ml_pc{{ asignacioninventario[3] }}" name="ml_pc" value="{{ asignacioninventario[5] }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ml_pantalla" class="form-label">ML-PANTALLA</label>
+                                <input type="text" class="form-control" id="ml_pantalla{{ asignacioninventario[3] }}" name="ml_pantalla" value="{{ asignacioninventario[6] }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mause{{ asignacioninventario[3] }}" name="mause" {{ "checked" if asignacioninventario[7]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="mause{{ asignacioninventario[3] }}">MOUSE</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="guaya{{ asignacioninventario[3] }}" name="guaya" {{ "checked" if asignacioninventario[8]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="guaya{{ asignacioninventario[3] }}">GUAYA</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cargador{{ asignacioninventario[3] }}" name="cargador" {{ "checked" if asignacioninventario[9]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="cargador{{ asignacioninventario[3] }}">CARGADOR</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="diadema{{ asignacioninventario[3] }}" name="diadema" {{ "checked" if asignacioninventario[10]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="diadema{{ asignacioninventario[3] }}">DIADEMA</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="silla{{ asignacioninventario[3] }}" name="silla" {{ "checked" if asignacioninventario[12]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="silla{{ asignacioninventario[3] }}">SILLA</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cubiculo{{ asignacioninventario[3] }}" name="cubiculo" {{ "checked" if asignacioninventario[13]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="cubiculo{{ asignacioninventario[3] }}">CUBÍCULO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="descansapies{{ asignacioninventario[3] }}" name="descansapies" {{ "checked" if asignacioninventario[14]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="descansapies{{ asignacioninventario[3] }}">DESCANSAPIES</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="teclado{{ asignacioninventario[3] }}" name="teclado" {{ "checked" if asignacioninventario[17]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="teclado{{ asignacioninventario[3] }}">TECLADO</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="base{{ asignacioninventario[3] }}" name="base" {{ "checked" if asignacioninventario[18]=="Sí" else "" }}>
+                                    <label class="form-check-label" for="base{{ asignacioninventario[3] }}">BASE</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="estado" class="form-label">ESTADO</label>
+                                <select class="form-select" id="estado{{ asignacioninventario[3] }}" name="estado">
+                                    <option value="0">Seleccione una opción</option>
+                                    <option value="ACTIVO" {{ "selected" if asignacioninventario[16] == "ACTIVO" else "" }}>ACTIVO</option>
+                                    <option value="INACTIVO" {{ "selected" if asignacioninventario[16] == "INACTIVO" else "" }}>INACTIVO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="sector" class="form-label">SECTOR</label>
+                                <input type="text" class="form-control" id="sector{{ asignacioninventario[3] }}" name="sector" value="{{ asignacioninventario[19] }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="observaciones" class="form-label">OBSERVACIONES</label>
+                            <textarea class="form-control" id="observaciones{{ asignacioninventario[3] }}" name="observaciones" rows="3">{{ asignacioninventario[15] }}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
-            document.addEventListener('DOMContentLoaded', function() {
-                // Selecciona todos los checkboxes
-                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            
-                checkboxes.forEach(function(checkbox) {
-                    // Establece el estado inicial del checkbox basado en el valor de data-value
-                    checkbox.checked = checkbox.getAttribute('data-value') === 'no';
-            
-                    // Agrega un event listener para el cambio de estado
-                    checkbox.addEventListener('change', function() {
-                        // Actualiza el valor del checkbox basado en su estado
-                        this.value = this.checked ? 'si' : 'No';
-                    });
+    <script>
+        function abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado) {
+            document.getElementById('idActualizar').value = id;
+            document.getElementById('nombres_completos' + numero_puesto).value = nombres_completos;
+            document.getElementById('cedula' + numero_puesto).value = cedula;
+            document.getElementById('cargo' + numero_puesto).value = cargo;
+            document.getElementById('extension' + numero_puesto).value = extension;
+            document.getElementById('ml_pc' + numero_puesto).value = ml_pc;
+            document.getElementById('ml_pantalla' + numero_puesto).value = ml_pantalla;
+            document.getElementById('observaciones' + numero_puesto).value = observaciones;
+            document.getElementById('estado' + numero_puesto).value = estado;
+            // Actualiza los estados de los checkboxes
+            document.getElementById('mause' + numero_puesto).checked = mause === 'Sí';
+            document.getElementById('guaya' + numero_puesto).checked = guaya === 'Sí';
+            document.getElementById('cargador' + numero_puesto).checked = cargador === 'Sí';
+            document.getElementById('diadema' + numero_puesto).checked = diadema === 'Sí';
+            document.getElementById('silla' + numero_puesto).checked = silla === 'Sí';
+            document.getElementById('cubiculo' + numero_puesto).checked = cubiculo === 'Sí';
+            document.getElementById('descansapies' + numero_puesto).checked = descansapies === 'Sí';
+            // Abre el modal
+            $('#miModal' + numero_puesto).modal('show');
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecciona todos los botones de editar y añade el evento de clic
+            document.querySelectorAll('.btn-edit').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const nombres_completos = this.dataset.nombres_completos;
+                    const cedula = this.dataset.cedula;
+                    const cargo = this.dataset.cargo;
+                    const extension = this.dataset.extension;
+                    const ml_pc = this.dataset.ml_pc;
+                    const ml_pantalla = this.dataset.ml_pantalla;
+                    const mause = this.dataset.mause;
+                    const guaya = this.dataset.guaya;
+                    const cargador = this.dataset.cargador;
+                    const diadema = this.dataset.diadema;
+                    const silla = this.dataset.silla;
+                    const cubiculo = this.dataset.cubiculo;
+                    const descansapies = this.dataset.descansapies;
+                    const observaciones = this.dataset.observaciones;
+                    const numero_puesto = this.dataset.numero_puesto;
+                    const estado = this.dataset.estado;
+                    abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado);
                 });
             });
-            </script>
-    </main>
+        });
+    </script>
 </body>
 </html>
