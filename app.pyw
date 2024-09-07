@@ -744,11 +744,17 @@ def inventario():
         asignacionesinventario = cursor.fetchall()
         
         # Calcular los totales
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pc != '' AND ml_pc IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pc LIKE '%ML%' AND ml_pc IS NOT NULL")
         total_ml_pc = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pantalla != '' AND ml_pantalla IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pc LIKE '%HD%' AND ml_pc IS NOT NULL")
+        total_hd_pc = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pantalla LIKE '%ML%' AND ml_pantalla IS NOT NULL")
         total_ml_pantalla = cursor.fetchone()[0]
+        
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pantalla LIKE '%HD%' AND ml_pantalla IS NOT NULL")
+        total_hd_pantalla = cursor.fetchone()[0]
         
         cursor.execute("SELECT COUNT(*) FROM registro WHERE diadema != '' AND diadema IS NOT NULL")
         total_diadema = cursor.fetchone()[0]
@@ -771,10 +777,11 @@ def inventario():
         cursor.execute("SELECT COUNT(*) FROM registro WHERE estado = 'ACTIVO'")
         total_activo = cursor.fetchone()[0]
         
-        
     totales = {
         'total_ml_pc': total_ml_pc,
+        'total_hd_pc': total_hd_pc,
         'total_ml_pantalla': total_ml_pantalla,
+        'total_hd_pantalla': total_hd_pantalla,
         'total_diadema': total_diadema,
         'total_mause': total_mause,
         'total_guaya': total_guaya,

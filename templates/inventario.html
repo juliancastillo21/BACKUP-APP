@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/inventario.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><i class="fas fa-users-cog me-2"></i>CONTROL DE PERSONAL</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('exportar_a_excel4') }}"><i class="fas fa-file-excel me-1"></i>Descargar Excel</a>
+                        <a class="nav-link" href="{{ url_for('exportar_a_excel4') }}"><i
+                                class="fas fa-file-excel me-1"></i>Descargar Excel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin"><i class="fas fa-home me-1"></i>Inicio</a>
@@ -42,9 +46,23 @@
                 </div>
                 <div class="col-md-4 col-lg-3 mb-2">
                     <div class="summary-item">
+                        <i class="fas fa-desktop"></i>
+                        <span>Total HD-PC:</span>
+                        <strong>{{ totales.total_hd_pc}}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
                         <i class="fas fa-tv"></i>
                         <span>Total ML-Pantalla:</span>
                         <strong>{{ totales.total_ml_pantalla }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-2">
+                    <div class="summary-item">
+                        <i class="fas fa-tv"></i>
+                        <span>Total HD-Pantalla:</span>
+                        <strong>{{ totales.total_hd_pantalla}}</strong>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-3 mb-2">
@@ -119,7 +137,8 @@
                         <td>{{ asignacioninventario[2] }}</td>
                         <td>{{ asignacioninventario[3] }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#miModal{{ asignacioninventario[3] }}">
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#miModal{{ asignacioninventario[3] }}">
                                 <i class="fas fa-edit me-1"></i>Editar
                             </button>
                         </td>
@@ -132,7 +151,8 @@
 
     <!-- Modal structure (repeated for each row) -->
     {% for asignacioninventario in asignacionesinventario %}
-    <div class="modal fade" id="miModal{{ asignacioninventario[3] }}" tabindex="-1" aria-labelledby="miModalLabel{{ asignacioninventario[3] }}" aria-hidden="true">
+    <div class="modal fade" id="miModal{{ asignacioninventario[3] }}" tabindex="-1"
+        aria-labelledby="miModalLabel{{ asignacioninventario[3] }}" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -147,89 +167,122 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="nombres_completos" class="form-label">NOMBRES COMPLETOS</label>
-                                <input type="text" class="form-control" id="nombres_completos{{ asignacioninventario[3] }}" name="nombres_completos" value="{{ asignacioninventario[0] }}">
+                                <input type="text" class="form-control"
+                                    id="nombres_completos{{ asignacioninventario[3] }}" name="nombres_completos"
+                                    value="{{ asignacioninventario[0] }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="cedula" class="form-label">NÚMERO DE CÉDULA</label>
-                                <input type="text" class="form-control" id="cedula{{ asignacioninventario[3] }}" name="cedula" value="{{ asignacioninventario[1] }}">
+                                <input type="text" class="form-control" id="cedula{{ asignacioninventario[3] }}"
+                                    name="cedula" value="{{ asignacioninventario[1] }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="cargo" class="form-label">CARGO</label>
-                                <input type="text" class="form-control" id="cargo{{ asignacioninventario[3] }}" name="cargo" value="{{ asignacioninventario[2] }}">
+                                <input type="text" class="form-control" id="cargo{{ asignacioninventario[3] }}"
+                                    name="cargo" value="{{ asignacioninventario[2] }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="extension" class="form-label">NÚMERO CELULAR</label>
-                                <input type="text" class="form-control" id="extension{{ asignacioninventario[3] }}" name="extension" value="{{ asignacioninventario[4] }}">
+                                <input type="text" class="form-control" id="extension{{ asignacioninventario[3] }}"
+                                    name="extension" value="{{ asignacioninventario[4] }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="ml_pc" class="form-label">ML-PC</label>
-                                <input type="text" class="form-control" id="ml_pc{{ asignacioninventario[3] }}" name="ml_pc" value="{{ asignacioninventario[5] }}">
+                                <input type="text" class="form-control" id="ml_pc{{ asignacioninventario[3] }}"
+                                    name="ml_pc" value="{{ asignacioninventario[5] }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="ml_pantalla" class="form-label">ML-PANTALLA</label>
-                                <input type="text" class="form-control" id="ml_pantalla{{ asignacioninventario[3] }}" name="ml_pantalla" value="{{ asignacioninventario[6] }}">
+                                <input type="text" class="form-control" id="ml_pantalla{{ asignacioninventario[3] }}"
+                                    name="ml_pantalla" value="{{ asignacioninventario[6] }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mause{{ asignacioninventario[3] }}" name="mause" {{ "checked" if asignacioninventario[7]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="mause{{ asignacioninventario[3] }}">MOUSE</label>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="mause{{ asignacioninventario[3] }}" name="mause" {{ "checked" if
+                                        asignacioninventario[7]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="mause{{ asignacioninventario[3] }}">MOUSE</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="guaya{{ asignacioninventario[3] }}" name="guaya" {{ "checked" if asignacioninventario[8]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="guaya{{ asignacioninventario[3] }}">GUAYA</label>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="guaya{{ asignacioninventario[3] }}" name="guaya" {{ "checked" if
+                                        asignacioninventario[8]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="guaya{{ asignacioninventario[3] }}">GUAYA</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="cargador{{ asignacioninventario[3] }}" name="cargador" {{ "checked" if asignacioninventario[9]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="cargador{{ asignacioninventario[3] }}">CARGADOR</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="diadema{{ asignacioninventario[3] }}" name="diadema" {{ "checked" if asignacioninventario[10]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="diadema{{ asignacioninventario[3] }}">DIADEMA</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="silla{{ asignacioninventario[3] }}" name="silla" {{ "checked" if asignacioninventario[12]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="silla{{ asignacioninventario[3] }}">SILLA</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="cubiculo{{ asignacioninventario[3] }}" name="cubiculo" {{ "checked" if asignacioninventario[13]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="cubiculo{{ asignacioninventario[3] }}">CUBÍCULO</label>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="cargador{{ asignacioninventario[3] }}" name="cargador" {{ "checked" if
+                                        asignacioninventario[9]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="cargador{{ asignacioninventario[3] }}">CARGADOR</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="descansapies{{ asignacioninventario[3] }}" name="descansapies" {{ "checked" if asignacioninventario[14]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="descansapies{{ asignacioninventario[3] }}">DESCANSAPIES</label>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="diadema{{ asignacioninventario[3] }}" name="diadema" {{ "checked" if
+                                        asignacioninventario[10]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="diadema{{ asignacioninventario[3] }}">DIADEMA</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="teclado{{ asignacioninventario[3] }}" name="teclado" {{ "checked" if asignacioninventario[17]=="Sí" else "" }}>
-                                    <label class="form-check-label" for="teclado{{ asignacioninventario[3] }}">TECLADO</label>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="silla{{ asignacioninventario[3] }}" name="silla" {{ "checked" if
+                                        asignacioninventario[12]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="silla{{ asignacioninventario[3] }}">SILLA</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="base{{ asignacioninventario[3] }}" name="base" {{ "checked" if asignacioninventario[18]=="Sí" else "" }}>
+                                    <input class="form-check-input" type="checkbox"
+                                        id="cubiculo{{ asignacioninventario[3] }}" name="cubiculo" {{ "checked" if
+                                        asignacioninventario[13]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="cubiculo{{ asignacioninventario[3] }}">CUBÍCULO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        id="descansapies{{ asignacioninventario[3] }}" name="descansapies" {{ "checked"
+                                        if asignacioninventario[14]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="descansapies{{ asignacioninventario[3] }}">DESCANSAPIES</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        id="teclado{{ asignacioninventario[3] }}" name="teclado" {{ "checked" if
+                                        asignacioninventario[17]=="Sí" else "" }}>
+                                    <label class="form-check-label"
+                                        for="teclado{{ asignacioninventario[3] }}">TECLADO</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        id="base{{ asignacioninventario[3] }}" name="base" {{ "checked" if
+                                        asignacioninventario[18]=="Sí" else "" }}>
                                     <label class="form-check-label" for="base{{ asignacioninventario[3] }}">BASE</label>
                                 </div>
                             </div>
@@ -239,18 +292,22 @@
                                 <label for="estado" class="form-label">ESTADO</label>
                                 <select class="form-select" id="estado{{ asignacioninventario[3] }}" name="estado">
                                     <option value="0">Seleccione una opción</option>
-                                    <option value="ACTIVO" {{ "selected" if asignacioninventario[16] == "ACTIVO" else "" }}>ACTIVO</option>
-                                    <option value="INACTIVO" {{ "selected" if asignacioninventario[16] == "INACTIVO" else "" }}>INACTIVO</option>
+                                    <option value="ACTIVO" {{ "selected" if asignacioninventario[16]=="ACTIVO" else ""
+                                        }}>ACTIVO</option>
+                                    <option value="INACTIVO" {{ "selected" if asignacioninventario[16]=="INACTIVO"
+                                        else "" }}>INACTIVO</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="sector" class="form-label">SECTOR</label>
-                                <input type="text" class="form-control" id="sector{{ asignacioninventario[3] }}" name="sector" value="{{ asignacioninventario[19] }}">
+                                <input type="text" class="form-control" id="sector{{ asignacioninventario[3] }}"
+                                    name="sector" value="{{ asignacioninventario[19] }}">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="observaciones" class="form-label">OBSERVACIONES</label>
-                            <textarea class="form-control" id="observaciones{{ asignacioninventario[3] }}" name="observaciones" rows="3">{{ asignacioninventario[15] }}</textarea>
+                            <textarea class="form-control" id="observaciones{{ asignacioninventario[3] }}"
+                                name="observaciones" rows="3">{{ asignacioninventario[15] }}</textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -285,11 +342,11 @@
             // Abre el modal
             $('#miModal' + numero_puesto).modal('show');
         }
-    
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
             // Selecciona todos los botones de editar y añade el evento de clic
-            document.querySelectorAll('.btn-edit').forEach(function(button) {
-                button.addEventListener('click', function() {
+            document.querySelectorAll('.btn-edit').forEach(function (button) {
+                button.addEventListener('click', function () {
                     const id = this.dataset.id;
                     const nombres_completos = this.dataset.nombres_completos;
                     const cedula = this.dataset.cedula;
@@ -313,4 +370,5 @@
         });
     </script>
 </body>
+
 </html>
