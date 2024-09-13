@@ -756,22 +756,22 @@ def inventario():
         cursor.execute("SELECT COUNT(*) FROM registro WHERE ml_pantalla LIKE '%HD%' AND ml_pantalla IS NOT NULL")
         total_hd_pantalla = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE diadema != '' AND diadema IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE diadema = 'Sí'")
         total_diadema = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE mause != '' AND mause IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE mause = 'Sí'")
         total_mause = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE guaya != '' AND guaya IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE guaya = 'Sí'")
         total_guaya = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE extension != '' AND extension IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE extension LIKE '3%'")
         total_extension = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE descansapies != '' AND descansapies IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE descansapies = 'Sí'")
         total_descansapies = cursor.fetchone()[0]
         
-        cursor.execute("SELECT COUNT(*) FROM registro WHERE silla != '' AND silla IS NOT NULL")
+        cursor.execute("SELECT COUNT(*) FROM registro WHERE silla = 'Sí'")
         total_silla = cursor.fetchone()[0]
         
         cursor.execute("SELECT COUNT(*) FROM registro WHERE estado = 'ACTIVO'")
