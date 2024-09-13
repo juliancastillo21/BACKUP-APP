@@ -126,6 +126,10 @@
                         <th>CÉDULA</th>
                         <th>CARGO</th>
                         <th>PUESTO</th>
+                        <th>ML-PC</th>
+                        <th>ML-PANTALLA</th>
+                        <th>OBSERVACIONES</th>
+                        <th>MOUSE</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
@@ -136,6 +140,11 @@
                         <td>{{ asignacioninventario[1] }}</td>
                         <td>{{ asignacioninventario[2] }}</td>
                         <td>{{ asignacioninventario[3] }}</td>
+                        <td>{{ asignacioninventario[5] }}</td>
+                        <td>{{ asignacioninventario[6] }}</td>
+                        <td>{{ asignacioninventario[15] }}</td>
+                        <td>{{ asignacioninventario[7] }}</td>
+
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#miModal{{ asignacioninventario[3] }}">
@@ -321,30 +330,7 @@
     {% endfor %}
 
     <script>
-        function abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado) {
-            document.getElementById('idActualizar').value = id;
-            document.getElementById('nombres_completos' + numero_puesto).value = nombres_completos;
-            document.getElementById('cedula' + numero_puesto).value = cedula;
-            document.getElementById('cargo' + numero_puesto).value = cargo;
-            document.getElementById('extension' + numero_puesto).value = extension;
-            document.getElementById('ml_pc' + numero_puesto).value = ml_pc;
-            document.getElementById('ml_pantalla' + numero_puesto).value = ml_pantalla;
-            document.getElementById('observaciones' + numero_puesto).value = observaciones;
-            document.getElementById('estado' + numero_puesto).value = estado;
-            // Actualiza los estados de los checkboxes
-            document.getElementById('mause' + numero_puesto).checked = mause === 'Sí';
-            document.getElementById('guaya' + numero_puesto).checked = guaya === 'Sí';
-            document.getElementById('cargador' + numero_puesto).checked = cargador === 'Sí';
-            document.getElementById('diadema' + numero_puesto).checked = diadema === 'Sí';
-            document.getElementById('silla' + numero_puesto).checked = silla === 'Sí';
-            document.getElementById('cubiculo' + numero_puesto).checked = cubiculo === 'Sí';
-            document.getElementById('descansapies' + numero_puesto).checked = descansapies === 'Sí';
-            // Abre el modal
-            $('#miModal' + numero_puesto).modal('show');
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
-            // Selecciona todos los botones de editar y añade el evento de clic
             document.querySelectorAll('.btn-edit').forEach(function (button) {
                 button.addEventListener('click', function () {
                     const id = this.dataset.id;
@@ -365,6 +351,20 @@
                     const numero_puesto = this.dataset.numero_puesto;
                     const estado = this.dataset.estado;
                     abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado);
+                });
+            });
+
+            document.querySelectorAll('form[id^="formActualizar"]').forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(function (checkbox) {
+                        if (checkbox.checked) {
+                            checkbox.value = 'Sí';
+                        } else {
+                            checkbox.value = 'No';
+                            checkbox.checked = true;
+                        }
+                    });
                 });
             });
         });
