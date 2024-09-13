@@ -837,20 +837,26 @@ def update5():
     extension = request.form.get('extension')
     ml_pc = request.form.get('ml_pc')
     ml_pantalla = request.form.get('ml_pantalla')
-    mause =  request.form.get('mause') 
-    guaya =  request.form.get('guaya')
-    cargador = request.form.get('cargador') 
-    diadema = request.form.get('diadema') 
+    mause = request.form.get('mause')
+    guaya = request.form.get('guaya')
+    cargador = request.form.get('cargador')
+    diadema = request.form.get('diadema')
     fecha_envio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    silla =  request.form.get('silla') 
-    cubiculo =  request.form.get('cubiculo') 
-    descansapies = request.form.get('descansapies') 
+    silla = request.form.get('silla')
+    cubiculo = request.form.get('cubiculo')
+    descansapies = request.form.get('descansapies')
     observaciones = request.form.get('observaciones')
+    teclado = request.form.get('teclado')
+    base = request.form.get('base')
+    sector = request.form.get('sector')
 
     with closing(connect_db5()) as db:
         cursor = db.cursor()
-        cursor.execute("UPDATE registro SET nombres_completos=?, cedula=?, cargo=?,estado=?, extension=?, ml_pc=?, ml_pantalla=?, mause=?, guaya=?, cargador=?, diadema=?, fecha_envio=?, silla=?, cubiculo=?, descansapies=?, observaciones=? WHERE numero_puesto=?", 
-               (nombres_completos, cedula, cargo,estado, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, fecha_envio, silla, cubiculo, descansapies, observaciones, numero_puesto))
+        cursor.execute("""
+            UPDATE registro 
+            SET nombres_completos=?, cedula=?, cargo=?, estado=?, extension=?, ml_pc=?, ml_pantalla=?, mause=?, guaya=?, cargador=?, diadema=?, fecha_envio=?, silla=?, cubiculo=?, descansapies=?, observaciones=?, teclado=?, base=?, sector=? 
+            WHERE numero_puesto=?
+        """, (nombres_completos, cedula, cargo, estado, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, fecha_envio, silla, cubiculo, descansapies, observaciones, teclado, base, sector, numero_puesto))
 
         db.commit()
 

@@ -143,7 +143,7 @@
                         <td>{{ asignacioninventario[5] }}</td>
                         <td>{{ asignacioninventario[6] }}</td>
                         <td>{{ asignacioninventario[15] }}</td>
-                        <td>{{ asignacioninventario[7] }}</td>
+                        <td>{{ asignacioninventario[17] }}</td>
 
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -349,8 +349,11 @@
                     const descansapies = this.dataset.descansapies;
                     const observaciones = this.dataset.observaciones;
                     const numero_puesto = this.dataset.numero_puesto;
+                    const teclado = this.dataset.teclado;
+                    const base = this.dataset.base;
+                    const sector = this.dataset.sector;
                     const estado = this.dataset.estado;
-                    abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado);
+                    abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto, estado,teclado,base,sector);
                 });
             });
 
