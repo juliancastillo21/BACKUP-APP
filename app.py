@@ -17,7 +17,6 @@ import io
 app = Flask(__name__)
 app.secret_key = 'Admin12345*+'
 
-
 #--------------------------INICIA SESSION LOGIN----------------------------
 
 def connect_db():
@@ -95,7 +94,6 @@ def intranet():
 
 @app.route('/index')
 def index():
-
     return render_template('index.html')
 
 @app.route('/reglamento')
@@ -136,14 +134,27 @@ def logout():
     session.pop('role', None)
     return redirect(url_for('login'))
 
+@app.route('/auditoria')
+def auditoria():
+    return render_template('auditoria.html')
 
+@app.route('/medicina_general')
+def medicina_general():
+    return render_template('medicina_general.html')
 
+@app.route('/politicas')
+def politicas():
+    return render_template('politicas.html')
 
+@app.route('/psicologia')
+def Psicologia():
+    return render_template('psicologia.html')
 
-
+@app.route('/seguridad')
+def seguridad():
+    return render_template('seguridad.html')
 
 #---------------------FINALIZA SESSION LOGIN-------------------------------
-
 
 @app.route('/')
 def inicio():
