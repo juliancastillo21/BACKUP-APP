@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <title>soporte admin</title>
     <style>
         .navbar {
@@ -21,7 +25,8 @@
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -40,15 +45,16 @@
         }
     </style>
 </head>
+
 <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <img src="/static/imagenes/logo2.png" alt="">
-                <button class="btn btn-primary" onclick="window.location.href='/exportar_a_excel3'">Descargar Excel</button>
-                <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
-            </div>
-        </nav>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <img src="/static/imagenes/logo2.png" alt="">
+            <button class="btn btn-primary" onclick="window.location.href='/exportar_a_excel3'">Descargar Excel</button>
+            <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+        </div>
+    </nav>
     <main>
         <h1>SOLICITUDES SOPORTE</h1>
         <table class="table table-striped">
@@ -60,10 +66,12 @@
                 <th>observaciones</th>
                 <th>Fecha de Envío</th>
                 <th>estado de la solicitud</th>
-                <th>observaciones2</th>       
+                <th>observaciones2</th>
+                <th>Encargado de la soculicon</th>
+                <th>#ticket</th>
                 <th>Actualizar estado</th>
 
-                
+
             </tr>
             {% for row in rows %}
             <tr>
@@ -75,30 +83,68 @@
                 <td>{{ row[4] }}</td>
                 <td>{{ row[5] }}</td>
                 <td>{{ row[6] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
                 <td>
                     <form action="/actualizar_estado2/{{ row[4] }}" method="post">
+                        <label for="estado_de_solicitud">Estado de la Solicitud:</label>
                         <select name="estado_de_solicitud" class="form-select">
                             <option value="Pendiente">Pendiente</option>
                             <option value="En Proceso">En Proceso</option>
                             <option value="Completada">Completada</option>
                         </select>
                         <br>
-                        <textarea name="observaciones2" class="form-control" rows="3" placeholder="Agregar observaciones"></textarea>
+                        <label for="encargado">Encargado de la Solución:</label>
+                        <select name="encargado" class="form-select" id="encargado" onchange="toggleTicketField()">
+                            <option value="julian">Julian</option>
+                            <option value="yarlin">Yarlin</option>
+                            <option value="alejandro">Alejandro</option>
+                            <option value="milenio-pc">milenio-pc</option>
+                        </select>
+                        <br>
+                        <div id="ticketField" style="display: none;">
+                            <label for="ticket">Ticket de la Solicitud:</label>
+                            <input type="text" name="ticket" id="ticket" class="form-control"
+                                placeholder="Ingrese el número de ticket">
+                            <br>
+                        </div>
+                        <label for="observaciones2">Observaciones:</label>
+                        <textarea name="observaciones2" class="form-control" rows="3"
+                            placeholder="Agregar observaciones"></textarea>
                         <br>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
+
+                    <script>
+                        function toggleTicketField() {
+                            var encargado = document.getElementById("encargado").value;
+                            var ticketField = document.getElementById("ticketField");
+                            var ticketInput = document.getElementById("ticket");
+                            if (encargado === "milenio-pc") {
+                                ticketField.style.display = "block";
+                                ticketInput.setAttribute("required", "required");
+                            } else {
+                                ticketField.style.display = "none";
+                                ticketInput.removeAttribute("required");
+                            }
+                        }
+                    </script>
                 </td>
             </tr>
             {% endfor %}
-        </table><br><hr>
+        </table><br>
+        <hr>
     </main>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a href="" class="navbar-brand">Descargar</a>
-            <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+            <a class="navbar-brand" href="/admin">Regresar al inicio</a>
         </div>
     </nav>
 </body>
+
 </html>

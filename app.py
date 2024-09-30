@@ -320,8 +320,8 @@ def procesar_formulario3():
     # Insertar los datos en la base de datos
     conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
     c = conn.cursor()
-    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud,serial) VALUES (?, ?, ?, ?, ?, ?,?)", 
-              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud,serial))
+    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial) VALUES (?, ?, ?, ?, ?, ?, ?)", 
+              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial))
     conn.commit()
     conn.close()
 
@@ -331,19 +331,21 @@ def procesar_formulario3():
 def actualizar_estado2(fecha_envio):
     # Obtener los datos del formulario
     estado_de_solicitud = request.form.get('estado_de_solicitud')
+    encargado = request.form.get('encargado')
+    ticket = request.form.get('ticket')
     observaciones2 = request.form.get('observaciones2')
 
     # Construir la consulta SQL para actualizar
-    query = "UPDATE solicitar_soporte SET estado_de_solicitud=?, observaciones2=? WHERE fecha_envio=?"
+    query = "UPDATE solicitar_soporte SET estado_de_solicitud=?, encargado=?, ticket=?, observaciones2=? WHERE fecha_envio=?"
 
     # Ejecutar la consulta SQL
-    conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
+    conn = sqlite3.connect('registro.db')
     cursor = conn.cursor()
-    cursor.execute(query, (estado_de_solicitud, observaciones2, fecha_envio))
+    cursor.execute(query, (estado_de_solicitud, encargado, ticket, observaciones2, fecha_envio))
     conn.commit()
     conn.close()
 
-    return redirect(url_for('estado_solicitud1')) 
+    return redirect(url_for('estado_solicitud1'))
 
 
 
