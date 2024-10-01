@@ -112,6 +112,25 @@ def Ayudapersonal():
 def Entregapc():
     return render_template('Entrega_pc.html')
 
+@app.route('/auditoria')
+def auditoria():
+    return render_template('auditoria.html')
+
+@app.route('/medicina_general')
+def medicina_general():
+    return render_template('medicina_general.html')
+
+@app.route('/politicas')
+def politicas():
+    return render_template('politicas.html')
+
+@app.route('/psicologia')
+def Psicologia():
+    return render_template('psicologia.html')
+
+@app.route('/seguridad')
+def seguridad():
+    return render_template('seguridad.html')
 
 # Ruta para el panel de control de los administrativos
 @app.route('/admin')
@@ -134,26 +153,6 @@ def logout():
     session.pop('role', None)
     return redirect(url_for('login'))
 
-@app.route('/auditoria')
-def auditoria():
-    return render_template('auditoria.html')
-
-@app.route('/medicina_general')
-def medicina_general():
-    return render_template('medicina_general.html')
-
-@app.route('/politicas')
-def politicas():
-    return render_template('politicas.html')
-
-@app.route('/psicologia')
-def Psicologia():
-    return render_template('psicologia.html')
-
-@app.route('/seguridad')
-def seguridad():
-    return render_template('seguridad.html')
-
 #---------------------FINALIZA SESSION LOGIN-------------------------------
 
 @app.route('/')
@@ -161,7 +160,6 @@ def inicio():
     return render_template('index.html')
 
 # --------------- INICIA REGISTRO DE PACIENTES---------------------
-
 # The above code is a Python Flask application that serves as a backend for a web application related to patient registrations and data processing. Here is a breakdown of the main functionalities:
 
 @app.route('/registro')
@@ -242,13 +240,11 @@ def exportar_a_excel3():
 # ---------------------FINALIZA REGISTRO DE PACIENTES-----------------------------
 
 # ------------------INICIA FORMULARIO REGISTRO DE ACTIVOS------------------------------
- 
 # The above code is a Python script that defines a Flask web application with routes for creating a database, rendering a form, processing form data, and exporting data to an Excel file. Here is a breakdown of the main functionalities:
 
 def create_database():
     conn = sqlite3.connect('registro.db') 
     c = conn.cursor()
-
    
     c.execute('''CREATE TABLE IF NOT EXISTS registro
                  (nombres_completos text, cedula text, cargo text, numero_puesto text, extension text, ml_pc text, ml_pantalla text, mause text, guaya text, cargador text, diadema text, otros text, silla text, cubiculo text, descansapies text, observaciones text)''')
@@ -257,7 +253,6 @@ def create_database():
     conn.close()
 
 create_database()
-
 
 @app.route('/form')
 def form():
@@ -285,7 +280,6 @@ def procesar_formulario2():
     descansapies = "Sí" if request.form.get('descansapies')  == 'on' else "No"
     observaciones = request.form.get('observaciones')
     
-
     conn = sqlite3.connect('registro.db')
     c = conn.cursor()
     c.execute("INSERT INTO registro2 (nombres_completos, cedula, cargo,estado, numero_puesto, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, fecha_envio, silla, cubiculo, descansapies, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (nombres_completos, cedula, cargo,estado, numero_puesto, extension, ml_pc, ml_pantalla, mause, guaya, cargador,diadema,fecha_envio,silla,cubiculo,descansapies,observaciones))
@@ -358,15 +352,9 @@ def actualizar_estado2(fecha_envio):
 
     return redirect(url_for('estado_solicitud1'))
 
-
-
-
-
 # ------------------------FINALIZA FORMULARIO DE SOPORTE--------------------------------------------
 
-#
 # -------------------------INICIA FORMULARIO DE NOVEDADES---------------------------------------------
- 
 # The above code is a Python Flask application that handles a form submission for registering a new entry in a database table called "novedades" which stores information about novelties or updates. Here is a breakdown of the key functionalities:
 
 @app.route('/registrar_novedad')
@@ -419,7 +407,6 @@ def exportar_a_excel2():
 #-------------------------FINALIZA FORMULARIO NOVEDADES DE NOMINA------------------------------------------
 
 #----------------------INICIA SESSION DE TALENTO HUMANO-------------------------
-
 # The above code is a Python script using Flask framework to create a web application for managing human resources data. Here is a summary of what the code is doing:
 
 # Función para establecer una conexión a la base de datos
@@ -527,7 +514,6 @@ def completar_actividad(id):
         conn.commit()
     return redirect(url_for('talento_humano_page'))
 
-
 @app.route('/exportar_a_excel6')
 def exportar_a_excel6():
     # Conectar a la base de datos y obtener los datos
@@ -550,7 +536,6 @@ def exportar_a_excel6():
 #-----------------------FINALIZA SESSION DE TALENTO HUMANO-------------------------
 
 #------------------------INICIA SESSION DE NOMINA----------------------------------
-
 # The above code is a Python script that defines routes for a Flask web application. Here is a summary of what each function does:
 
 DATABASE = 'agenda.db'
@@ -611,11 +596,9 @@ def completar(id):
     conn.close()
     return redirect('/nomina')
 
-
 #-------------------------FINALIZA SESSION DE NOMINA----------------------
 
 #-------------------------INICIA SESSION DE OPERACIONES------------------------------------
-
 # The above code is a Python Flask application that defines several routes for handling operations related to tasks and support requests. Here is a summary of what each route does:
 
 DATA_BASE = 'operaciones.db'
@@ -747,8 +730,6 @@ registro = 'registro.db'
 def connect_db5():
     return sqlite3.connect(registro)
 
-
-
 @app.route('/inventario')
 def inventario():
     with closing(connect_db5()) as db:
@@ -838,7 +819,6 @@ def historial():
         return render_template('historial.html')
     return redirect(url_for('login'))
 
-
 # Ruta para actualizar un registro en la base de datos+
 @app.route('/update5', methods=['POST'])
 def update5():
@@ -904,7 +884,6 @@ def lineas():
     df['fecha'] = pd.to_datetime(df['fecha'])
 
     return render_template('lineas.html', asignaciones=asignaciones, personal_info=personal_info)
-    return send_file('static/lineas_plot.png', mimetype='image/png')
 
 # Ruta para actualizar un registro en la base de datos
 @app.route('/update', methods=['POST'])
@@ -940,7 +919,6 @@ def update():
         db.commit()
 
     return redirect(url_for('lineas'))
-
 
 # Función para insertar un nuevo registro en la base de datos
 @app.route('/insert2', methods=['POST'])
@@ -978,8 +956,6 @@ def plano():
     # Aquí puedes pasar datos dinámicos a la plantilla
     return render_template('plano.html', title='Plano HolaDr', iframe_src='https://www.canva.com/design/DAGCranO9II/jqxD1juKahpc3WvTqbUAfw/view?embed', link_href='https://www.canva.com/design/DAGCranO9II/jqxD1juKahpc3WvTqbUAfw/view?utm_content=DAGCranO9II&utm_campaign=designshare&utm_medium=embeds&utm_source=link', link_text='A-01')
 
-
-
 @app.route('/exportar_a_excel5')
 def exportar_a_excel5():
     # Conectar a la base de datos y obtener los datos
@@ -999,12 +975,7 @@ def exportar_a_excel5():
     output.seek(0)
     return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='asignacion de lineas.xlsx')
 
-
-
-
-
 #--------------------------FINALIZA SESSION OPERACIONES----------------------------------
-
 
 #---------------------INICIA SESSION PRACTICANTES-----------------------------
 # The above code is a Python Flask application that manages activities for apprentices. Here is a breakdown of the main functionalities:
@@ -1396,10 +1367,8 @@ def politicas_internas():
 
     return render_template('politicas_internas.html')
 
-
-
 #-------------------actas---------------------------------------------------------
-# 
+
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -1537,4 +1506,3 @@ def exportar_a_excel_actas():
 #--------------------------FINALIZA SESSION DE CONTABILIDAD----------------------
 if __name__ == '__main__':
     app.run(debug=True,  host='0.0.0.0', port=5000)
-    
