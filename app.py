@@ -139,6 +139,14 @@ def admin():
         return render_template('admin.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/politicas_seguridad')
+def Politicas():
+    return render_template('politicas_seguridad.html')
+
+@app.route('/bloquear_puertos')
+def Bloquearp():
+    return render_template('bloquear_puertos.html')
+
 # Ruta para el panel de control de los aprendices
 @app.route('/aprendices')
 def aprendices():
@@ -314,7 +322,7 @@ def exportar_a_excel4():
 
 @app.route('/formulario3', methods=['POST'])
 def procesar_formulario3():
-    nombres_completos = request.form.get('nombres_completos')  # Cambio en el nombre del campo
+    nombres_completos = request.form.get('nombres_completos')  
     tipo_de_inconveniente = request.form.get('tipo_de_inconveniente')
     numero_de_cubiculo = request.form.get('numero_de_cubiculo')
     observaciones = request.form.get('observaciones')
@@ -323,7 +331,7 @@ def procesar_formulario3():
     estado_de_solicitud = 'en gestion'
 
     # Insertar los datos en la base de datos
-    conn = sqlite3.connect('registro.db')  # Cambio en el nombre de la base de datos
+    conn = sqlite3.connect('registro.db') 
     c = conn.cursor()
     c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial) VALUES (?, ?, ?, ?, ?, ?, ?)", 
               (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial))
