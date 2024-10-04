@@ -326,15 +326,16 @@ def procesar_formulario3():
     tipo_de_inconveniente = request.form.get('tipo_de_inconveniente')
     numero_de_cubiculo = request.form.get('numero_de_cubiculo')
     observaciones = request.form.get('observaciones')
-    serial = request.form.get('serial') 
+    serial = request.form.get('serial')
+    nivel_importancia = request.form.get('nivel_importancia') 
     fecha_envio = datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Obtener la fecha y hora actuales
     estado_de_solicitud = 'en gestion'
 
     # Insertar los datos en la base de datos
     conn = sqlite3.connect('registro.db') 
     c = conn.cursor()
-    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial) VALUES (?, ?, ?, ?, ?, ?, ?)", 
-              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial))
+    c.execute("INSERT INTO solicitar_soporte (nombres_completos, tipo_de_inconveniente, numero_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial, nivel_importancia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
+              (nombres_completos, tipo_de_inconveniente, numero_de_cubiculo, observaciones, fecha_envio, estado_de_solicitud, serial, nivel_importancia))
     conn.commit()
     conn.close()
 
