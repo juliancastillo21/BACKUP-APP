@@ -132,6 +132,10 @@ def Psicologia():
 def seguridad():
     return render_template('seguridad.html')
 
+@app.route('/pausas_activas')
+def pausas_activas():
+    return render_template('pausas_activas.html')
+
 # Ruta para el panel de control de los administrativos
 @app.route('/admin')
 def admin():
