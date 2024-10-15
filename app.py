@@ -787,6 +787,9 @@ def inventario():
         
         cursor.execute("SELECT COUNT(*) FROM registro WHERE estado = 'ACTIVO'")
         total_activo = cursor.fetchone()[0]
+
+        total_pc = total_ml_pc + total_hd_pc
+        total_pantalla = total_ml_pantalla + total_hd_pantalla
         
     totales = {
         'total_ml_pc': total_ml_pc,
@@ -800,6 +803,8 @@ def inventario():
         'total_descansapies': total_descansapies,
         'total_silla': total_silla,
         'total_activo': total_activo,
+        'total_pc': total_pc,
+        'total_pantalla': total_pantalla
     }
     return render_template('inventario.html', asignacionesinventario=asignacionesinventario, totales=totales)
 
