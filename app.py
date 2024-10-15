@@ -151,6 +151,10 @@ def Politicas():
 def Bloquearp():
     return render_template('bloquear_puertos.html')
 
+@app.route('/biometrico')
+def Biometrico():
+    return render_template('biometrico.html')
+
 # Ruta para el panel de control de los aprendices
 @app.route('/aprendices')
 def aprendices():
