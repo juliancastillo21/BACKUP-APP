@@ -41,6 +41,7 @@
                                 <select class="form-select" id="tipo_de_inconveniente" name="tipo_de_inconveniente" required onchange="mostrarNivelImportancia(); toggleSerialField();">
                                     <option value="">Seleccione una opción</option>
                                     <option value="Falla celular">Falla celular</option>
+                                    <option value="Cambio de puesto">Cambio de puesto</option>
                                     <option value="Problema con Ipsa">Problema con Ipsa</option>
                                     <option value="Problema con Internet u Navegador">Problema con Internet u Navegador</option>
                                     <option value="Problema con la diadema">Problema con la diadema</option>
@@ -125,6 +126,7 @@
   // Mapeo de solicitudes a niveles de importancia
   const nivelesImportancia = {
             "Falla celular": "bajo",
+            "Cambio de puesto": "medio",
             "Problema con Ipsa": "medio",
             "Problema con Internet u Navegador": "medio",
             "Problema con la diadema": "bajo",
