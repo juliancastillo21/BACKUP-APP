@@ -691,11 +691,12 @@ def procesar_formulario_inv():
     facturable = request.form.get('facturable')
     fecha_envio = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
     estado = 'vigente'
+    sistemaoperativo = request.form.get('sistemaoperativo')
 
     with inventario_milenio_connection() as conn:
         c = conn.cursor()
-        c.execute("INSERT INTO inventario_milenio (serial, descripcionserial, descripcionlineal, tarifa, facturable, fecha_envio, estado) VALUES (?, ?, ?, ?, ?, ?, ?)", 
-                  (serial, descripcionserial, descripcionlineal, tarifa, facturable, fecha_envio, estado))
+        c.execute("INSERT INTO inventario_milenio (serial, descripcionserial, descripcionlineal, tarifa, facturable, fecha_envio, estado, sistemaoperativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
+                  (serial, descripcionserial, descripcionlineal, tarifa, facturable, fecha_envio, estado, sistemaoperativo))
         conn.commit()
 
     return redirect(url_for('inventario_milenio'))

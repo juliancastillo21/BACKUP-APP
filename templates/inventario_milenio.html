@@ -131,8 +131,9 @@
                         <th>SERIAL</th>
                         <th>DESCRIPCIÓN DEL SERIAL</th>
                         <th>DESCRIPCIÓN LINEAL</th>
+                        <th>SISTEMA OPERATIVO</th>
                         <th>TARIFA</th>
-                        <th>FACTURABLE</th>
+                        
                         <th>FECHA INGRESO</th>
                         <th>ESTADO</th>
                         <th>OBSERVACIONES</th>
@@ -147,8 +148,9 @@
                         <td>{{ rowi[1] }}</td>
                         <td>{{ rowi[2] }}</td>
                         <td>{{ rowi[3] }}</td>
+                        <td>{{ rowi[10] }}</td>
                         <td>{{ rowi[4] }}</td>
-                        <td>{{ rowi[5] }}</td>
+                        
                         <td>{{ rowi[6] }}</td>
                         <td>{{ rowi[7] }}</td>
                         <td>{{ rowi[8] }}</td>
@@ -214,6 +216,10 @@
                             <div class="mb-3">
                                 <label for="descripcionlineal" class="form-label">Descripción lineal</label>
                                 <input type="text" class="form-control" id="descripcionlineal" name="descripcionlineal" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sistemaoperativo" class="form-label">Sistema operativo</label>
+                                <input type="text" class="form-control" id="sistemaoperativo" name="sistemaoperativo" required>
                             </div>
                             <div class="mb-3">
                                 <label for="tarifa" class="form-label">Tarifa</label>
