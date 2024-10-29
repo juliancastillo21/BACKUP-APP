@@ -881,7 +881,7 @@ def update5():
 #-------------------------------LINEAS-----------------------------------
 # # The above code is a Python script that defines a Flask web application with several routes for interacting with a SQLite database. Here is a summary of what the code is doing:
 
-BASE = 'lineas.db'
+BASE = 'registro.db'
 
 # Función para establecer una conexión a la base de datos
 def connect_db2():
@@ -894,8 +894,6 @@ def lineas():
         cursor = db.cursor()
         cursor.execute("SELECT * FROM asignaciones")
         asignaciones = cursor.fetchall()
-        cursor.execute("SELECT nombre, cargo FROM personal")
-        personal_info = cursor.fetchall()
 
         data = {
         'cantidad_total': [100, 120, 150, 180],
@@ -906,7 +904,7 @@ def lineas():
     df = pd.DataFrame(data)
     df['fecha'] = pd.to_datetime(df['fecha'])
 
-    return render_template('lineas.html', asignaciones=asignaciones, personal_info=personal_info)
+    return render_template('lineas.html', asignaciones=asignaciones)
 
 # Ruta para actualizar un registro en la base de datos
 @app.route('/update', methods=['POST'])
